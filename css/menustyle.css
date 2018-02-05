@@ -1,0 +1,148 @@
+#left_banner {
+    width: 100px;
+    height: 100%;
+    position: fixed;
+    background: white;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: -10px 0 25px #000000;
+}
+
+.menu_box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu_box_logo {
+    padding-top: 10px;
+}
+
+#menu_logo_link {
+    display: block;
+    width: 90px;
+}
+
+#menu_logo {
+    width: 80%;
+    padding: 10%;
+}
+
+#theM, #theA {
+    fill: #000000;
+}
+
+#theX {
+    fill: #FECD18;
+}
+
+#theX.animated {
+    animation: onhoverLOGO 1s ease-in-out;
+}
+
+@keyframes onhoverLOGO {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(25px, -50px); }
+    100% { transform: translate(0, 0); }
+}
+
+#menu_box_social {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.social_icon {
+    padding: 5px;
+    margin: 5px;
+    width: 20px;
+}
+
+#BURGER {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#burger_menu {
+    width: 50px;
+}
+
+#burger_bar1 {
+    transition: 0.5s;
+}
+
+#burger_bar1.active {
+    transform: 
+        rotate(-45deg)
+        translate(-20px, 8px);
+    transition: 0.5s;
+}
+
+#burger_bar3 {
+    transition: 0.5s;
+}
+
+#burger_bar3.active {
+    transform:
+        rotate(45deg)
+        translate(8px, -20px);
+    transition: 0.5s;
+}
+
+#menu_banner {
+    position: fixed;
+    left: -300px;
+    height: 100%;
+    width: 400px;
+    z-index: 4;
+    background: #F5F5F5;
+    transition: 0.5s;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#menu_banner.active {
+    left: 100;
+    transition: 0.5s;
+}
+
+#menu_banner_top, #menu_banner_bottom {
+    width: calc(100% - 15px);
+    height: 25px;
+    font-size: 15px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+}
+
+#menu_banner_middle {
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#menu_banner_bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu_link {
+    width: 100%;
+    height: 100px;
+    
+    background: yellow;
+}

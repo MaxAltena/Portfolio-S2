@@ -1,0 +1,7 @@
+<svg id="burger_menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+    <path d="M7.5,7.5h25v5h-25V7.5z" id="burger_bar1" />
+    <path d="M7.5,17.5h25v5h-25V17.5z" id="burger_bar2" />
+    <path d="M7.5,27.5h25v5h-25V27.5z" id="burger_bar3" />
+    <path visibility="hidden" d="M4.1,20.1L18.2,5.9l3.5,3.5L7.6,23.6L4.1,20.1z" id="burger_bar1_arrow" />
+    <path visibility="hidden" d="M4.1,20.1l3.5-3.5l14.1,14.1l-3.5,3.5L4.1,20.1z" id="burger_bar3_arrow" />
+</svg>
