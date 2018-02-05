@@ -1,2 +1,3 @@
-# Portfolio-S2
-Portfolio website DED
+# Portfolio website Semester 2
+
+Het gehele leerportfolio van Max Altena van Semester 2 is hier te vinden!
