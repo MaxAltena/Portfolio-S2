@@ -1,114 +1,56 @@
 <?php
 
-include_once("includes/connection.php");
+include_once('includes/connection.php');
+include_once('includes/query.php');
+
+$category = new Category;
+$categories = $category->fetch();
+
+$page = "Home";
 
 ?>
 
 <html lang="nl">
     <head>
-        <title>Max Altena</title>
-        <?php include_once("includes/header.php"); ?>
+        <title>Portfolio | Max Altena</title>
+        <?php include_once('includes/head.php'); ?>
         <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
     </head>
 
     <body>
-        <div id="left_banner">
-            <div class="menu_box" id="menu_box_logo">
-                <a href="https://i371527.hera.fhict.nl/" id="menu_logo_link">
-                    <?php include("assets/logo.svg"); ?>
-                </a>
-            </div>
-            <div class="menu_box">
-                <div id="BURGER">
-                    <?php include("assets/burger.svg"); ?>
-                </div>
-            </div>
-            <div class="menu_box" id="menu_box_social">
-                <a href="https://www.linkedin.com/in/MaxAltena/" target="_blank" class="social_icon" id="LINKEDIN">
-                    <?php include("assets/linkedin.svg"); ?>
-                </a>
-                <a href="https://www.flickr.com/people/154548504@N07/" target="_blank" class="social_icon" id="FLICKR">
-                    <?php include("assets/flickr.svg"); ?>
-                </a>
-            </div>
-        </div>
-        <div id="menu_banner">
-            <div id="menu_banner_top">
-                
-            </div>
-            <div id="menu_banner_middle">
-                <a href="">HOME</a>
-                <a href="">DED</a>
-                <a href="">SCO</a>
-                <a href="">UXU</a>
-                <a href="">PTM</a>
-                <div class="menu_link">
-                    HOME
-                </div>
-            </div>
-            <div id="menu_banner_bottom">
-                <a href="admin">aanmelden</a>
-                <p>Gemaakt door Max Altena</p>
-            </div>
-        </div>
+        <?php include_once('includes/loader.php'); ?>
+        <?php include('includes/menu.php'); ?>
         <main>
-
+            <div id="splash">
+                <div id="splash_overlay">
+                    <div>
+                        <h1>Max Altena</h1>
+                        <h2>ICT & Media Design student</h2>
+                    </div>
+                </div>
+                <div id="ScrollDown"><span></span></div>
+            </div>
+            <div id="home">
+                <div>
+                    <h1>Over <span class="accent">Max Altena</span></h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 15" id="separator"><polyline class="coolLine" points="5,4.5 11.2,10.5 17.5,4.5 23.7,10.5 30,4.5 36.2,10.5 42.5,4.5 48.8,10.5 55,4.5"/></svg>
+                    <p>Ik ben Max Altena, een 19 jarige jongen uit Best. Ik studeer ICT &amp; Media Design op de Fontys hogeschool in Eindhoven. Hier leer ik van alles dat te maken heeft met ICT maar ook met Media en Design. Van hoe je een website maakt tot aan hoe je een poster designt. Dit zal mij verder helpen in mijn carrière als ICT'er en als persoon.<br>Ik vind het leuk dat je op mijn portfolio zit, veel plezier!</p>
+                </div>
+                <img src="assets/max.png" alt="Profielfoto" id="profilephoto" />
+            </div>
+            <div id="categories">
+                <?php
+                foreach ($categories as $category) {
+                    $photo = new Photo;
+                    $photoInsert = $photo->fetch_by_id($category['photo']);
+                    echo('<span class="divider"></span><a href="https://i371527.hera.fhict.nl/categorie?c='.$category['short'].'" class="categorieLink" id="categorieLink'.$category['short'].'"><div class="section"><div class="firstClass"><h1>'.$category['short'].'</h1><h2>'.$category['name'].'</h2></div><div><span class="arrowSpan"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></span></svg></div></div></a><script>$("#categorieLink'.$category['short'].'").css({background: "url(/assets/photos/'.$photoInsert.')"})</script>');
+                }
+                ?>
+            </div>
         </main>
-        
-        <script>
-            $(document).ready(function() {
-                $("#menu_logo").on({
-                    mouseenter: function(){
-                        $("#theX").addClass("animated"); 
-                    },
-                    animationend: function(){
-                        $("#theX").removeClass("animated");
-                    }
-                });
-                
-                $(".social_icon").on({
-                    mouseenter: function(){
-                        switch($(this).attr("id")) {
-                            case "LINKEDIN":
-                                $("#theLINKEDIN").css({fill: "#FECD18", transition: "0.2s"});
-                                break;
-                            case "FLICKR":
-                                $("#theFLICKR").css({fill: "#FECD18", transition: "0.2s"});
-                                break;
-                        }
-                    },
-                    mouseleave: function(){
-                        switch($(this).attr("id")) {
-                            case "LINKEDIN":
-                                $("#theLINKEDIN").css({fill: "#000000", transition: "0.2s"});
-                                break;
-                            case "FLICKR":
-                                $("#theFLICKR").css({fill: "#000000", transition: "0.2s"});
-                                break;
-                        }
-                    }
-                });
-                
-                $("#BURGER").on({
-                    mouseenter: function(){
-                        $(this).addClass("active");
-                        $("#burger_bar1").css({fill: "#FECD18", transition: "0.2s"});
-                        $("#burger_bar2").css({fill: "#FECD18", transition: "0.2s"});
-                        $("#burger_bar3").css({fill: "#FECD18", transition: "0.2s"});
-                    },
-                    mouseleave: function(){
-                        $(this).removeClass("active");
-                        $("#burger_bar1").css({fill: "#000000", transition: "0.2s"});
-                        $("#burger_bar2").css({fill: "#000000", transition: "0.2s"});
-                        $("#burger_bar3").css({fill: "#000000", transition: "0.2s"});
-                    },
-                    click: function(){
-                        $("#menu_banner").toggleClass("active");
-                        $("#burger_bar1").toggleClass("active");
-                        $("#burger_bar3").toggleClass("active");
-                    }
-                });
-            });
-        </script>
+        <script src="js/particles.js"></script>
+        <script src="js/particles_use.js"></script>
+        <script src="js/home.js"></script>
+        <?php include_once('includes/menuselect.php'); ?>
     </body>
 </html>
