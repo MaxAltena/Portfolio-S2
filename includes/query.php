@@ -25,6 +25,19 @@ class Category {
         $result = $query->fetchAll();
         return $result[0];
     }
+    
+    public function fetch_by_item($id) {
+        global $PDO;
+        $getCATIDfromITEMID = $PDO->prepare('SELECT category FROM items WHERE id = ?');
+        $getCATIDfromITEMID->bindValue(1, $id);
+        $getCATIDfromITEMID->execute();
+        $categoryID = $getCATIDfromITEMID->fetch(PDO::FETCH_COLUMN, 0);
+        
+        $getCATfromID = $PDO->prepare('SELECT name, short FROM categories WHERE id = ?');
+        $getCATfromID->bindValue(1, $categoryID);
+        $getCATfromID->execute();
+        return $getCATfromID->fetch();
+    }
 }
 
 class Item {
@@ -39,6 +52,21 @@ class Item {
         $getITEMSfromCAT->bindValue(1, $categoryID);
         $getITEMSfromCAT->execute();
         return $getITEMSfromCAT->fetchAll();
+    }
+    
+    public function fetch_ids() {
+        global $PDO;
+        $query = $PDO->prepare('SELECT id FROM items');
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    public function fetch_item($id) {
+        global $PDO;
+        $query = $PDO->prepare('SELECT * FROM items WHERE id = ?');
+        $query->bindValue(1, $id);
+        $query->execute();
+        return $query->fetch();
     }
 }
 
@@ -63,7 +91,7 @@ class Rubrix {
     
     public function fetch_rubrix($id) {
         global $PDO;
-        $query = $PDO->prepare('SELECT criterium, zeer, goed, voldoende, onvoldoende, value FROM rubrix WHERE rubrix_id = ?');
+        $query = $PDO->prepare('SELECT id, criterium, zeer, goed, voldoende, onvoldoende, value FROM rubrix WHERE rubrix_id = ?');
         $query->bindValue(1, $id);
         $query->execute();
         return $query->fetchAll();

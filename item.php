@@ -3,40 +3,41 @@
 include_once('includes/connection.php');
 include_once('includes/query.php');
 
-$category = new Category;
-$categories = $category->fetch();
-
-if (isset($_GET['c'])) {
-    if (!empty($_GET['c'])) {
-        $shortArray = array();
+if (isset($_GET['i'])) {
+    if (!empty($_GET['i'])) {
+        $itemArray = array();
+        $item = new Item;
+        $items = $item->fetch_ids();
         
-        foreach ($categories as $category) { 
-            array_push($shortArray, $category['short']); 
+        foreach ($items as $item) { 
+            array_push($itemArray, $item['id']); 
         }
-        if (in_array($_GET['c'], $shortArray)) {
-            $short = $_GET['c'];
-            $page = $short;
+        if (in_array($_GET['i'], $itemArray)) {
+            $id = $_GET['i'];
+            
+            $getItem = new Item;
+            $currentItem = $getItem->fetch_item($id);
             
             $getCategory = new Category;
-            $currentCategory = $getCategory->fetch_category($short);
-            
-            $item = new Item;
-            $items = $item->fetch_for_preview_by_category($short);
+            $currentCategory = $getCategory->fetch_by_item($id);
 ?>
 <html lang="nl">
     <head>
-        <title>??? | Max Altena</title>
+        <title><?= $currentItem['name']; ?> | Max Altena</title>
         <?php include_once('includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="css/itemstyle.css">
     </head>
 
     <body>
         <?php include_once('includes/loader.php'); ?>
         <?php include_once('includes/menu.php'); ?>
         <main>
-            Content!
+            <div id="content">
+                <p><?= $currentItem['name']; ?></p>
+                <p><?= $currentCategory['name']; ?></p>
+            </div>
         </main>
         <script src="js/menu.js"></script>
-        <?php include_once('includes/menuselect.php'); ?>
     </body>
 </html>
 <?php

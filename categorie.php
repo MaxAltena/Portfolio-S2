@@ -3,12 +3,11 @@
 include_once('includes/connection.php');
 include_once('includes/query.php');
 
-$category = new Category;
-$categories = $category->fetch();
-
 if (isset($_GET['c'])) {
     if (!empty($_GET['c'])) {
         $shortArray = array();
+        $category = new Category;
+        $categories = $category->fetch();
         
         foreach ($categories as $category) { 
             array_push($shortArray, $category['short']); 

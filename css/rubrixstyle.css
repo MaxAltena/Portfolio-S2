@@ -15,12 +15,10 @@ table {
     width: 95%;
     margin: 0 2.5%;
     background: #FFFFFF;
-    border-collapse: collapse;
     border: 3px solid #E9E9E9;
 }
 
 th, td {
-    border: 2px solid #E9E9E9;
     padding: 5px;
 }
 
@@ -115,4 +113,14 @@ span.arrowSpan:after {
 
 span.arrowSpan.hovered:after {
     transform: scale(1);
+}
+
+td.selected {
+    background: #119977;
+    border: 3px solid #119977;
+}
+
+td.onvoldoende.selected {
+    background: #CC0000;
+    border: 3px solid #CC0000;
 }
