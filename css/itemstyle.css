@@ -1,0 +1,8 @@
+#content {
+    width: auto;
+    height: 100vh;
+    background: #FFFFFF url('../assets/background.png') repeat center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -19,7 +19,7 @@ $page = "Home";
 
     <body>
         <?php include_once('includes/loader.php'); ?>
-        <?php include('includes/menu.php'); ?>
+        <?php include_once('includes/menu.php'); ?>
         <main>
             <div id="splash">
                 <div id="splash_overlay">
@@ -41,15 +41,36 @@ $page = "Home";
             <div id="categories">
                 <?php
                 foreach ($categories as $category) {
+                ?>
+                    <a href="https://i371527.hera.fhict.nl/categorie?c=<?= $category['short']; ?>" class="categorieLink" id="categorieLink<?= $category['short']; ?>">
+                        <div class="section">
+                            <div class="firstClass">
+                                <h1><?= $category['short']; ?></h1>
+                                <h2><?= $category['name']; ?></h2>
+                            </div>
+                            <div>
+                                <span class="arrowSpan">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                <?php
                     $photo = new Photo;
                     $photoInsert = $photo->fetch_by_id($category['photo']);
-                    echo('<span class="divider"></span><a href="https://i371527.hera.fhict.nl/categorie?c='.$category['short'].'" class="categorieLink" id="categorieLink'.$category['short'].'"><div class="section"><div class="firstClass"><h1>'.$category['short'].'</h1><h2>'.$category['name'].'</h2></div><div><span class="arrowSpan"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></span></svg></div></div></a><script>$("#categorieLink'.$category['short'].'").css({background: "url(/assets/photos/'.$photoInsert.')"})</script>');
+                    
+                    if ($photoInsert !== null) {
+                ?>
+                        <script>$("#categorieLink<?= $category['short']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)"})</script>
+                <?php
+                    }
                 }
                 ?>
             </div>
         </main>
         <script src="js/particles.js"></script>
         <script src="js/particles_use.js"></script>
+        <script src="js/menu.js"></script>
         <script src="js/home.js"></script>
         <?php include_once('includes/menuselect.php'); ?>
     </body>
