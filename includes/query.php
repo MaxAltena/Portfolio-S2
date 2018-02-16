@@ -7,6 +7,24 @@ class Category {
         $query->execute();
         return $query->fetchAll();
     }
+    
+    public function fetch_category($short) {
+        global $PDO;
+        $query = $PDO->prepare('SELECT name, text, rubrix FROM categories WHERE short = ?');
+        $query->bindValue(1, $short);
+        $query->execute();
+        $result = $query->fetchAll();
+        return $result[0];
+    }
+    
+    public function fetch_by_rubrix($id) {
+        global $PDO;
+        $query = $PDO->prepare('SELECT name, short FROM categories WHERE rubrix = ?');
+        $query->bindValue(1, $id);
+        $query->execute();
+        $result = $query->fetchAll();
+        return $result[0];
+    }
 }
 
 class Item {
@@ -32,6 +50,23 @@ class Photo {
         $query->execute();
         $result = $query->fetch();
         return $result['name'];
+    }
+}
+
+class Rubrix {
+    public function fetch() {
+        global $PDO;
+        $query = $PDO->prepare('SELECT DISTINCT rubrix_id FROM rubrix');
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    public function fetch_rubrix($id) {
+        global $PDO;
+        $query = $PDO->prepare('SELECT criterium, zeer, goed, voldoende, onvoldoende, value FROM rubrix WHERE rubrix_id = ?');
+        $query->bindValue(1, $id);
+        $query->execute();
+        return $query->fetchAll();
     }
 }
 

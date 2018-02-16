@@ -17,10 +17,11 @@ if (isset($_GET['c'])) {
             $short = $_GET['c'];
             $page = $short;
             
+            $getCategory = new Category;
+            $currentCategory = $getCategory->fetch_category($short);
+            
             $item = new Item;
             $items = $item->fetch_for_preview_by_category($short);
-            
-            // Get items
 ?>
 <html lang="nl">
     <head>
@@ -34,44 +35,198 @@ if (isset($_GET['c'])) {
         <?php include_once('includes/menu.php'); ?>
         <main>
             <div id="top">
-                <!-- Top = short name, full name and description? -->
-                <h1><?= $short; ?></h1>
-            </div>
-            <div id="center">
-                <!-- Filter per sprint -->
-                <div style="background: yellow;">
-                    Sprint1
-                </div>
+                <h1><?= $currentCategory['name']." (<span class='accent'>".$short."</span>)"; ?></h1>
                 <?php
-                    foreach ($items as $item) {
-                        // Switch to see what sprint item is from
-                        // If sprint item counter is not 0, create sprint header
-                        // Else do not create sprint header
-                        // 
-                        
-                        
-                        echo('<span class="divider"></span><a href="https://i371527.hera.fhict.nl/item?i='.$item['id'].'" class="itemLink" id="itemLink'.$item['id'].'"><div class="section"><div class="firstClass"><h1>'.$item['name'].'</h1><h2>'.$item['description'].'</h2></div><div><span class="arrowSpan"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span></div></div></a>');
-                        
-                        $photoID = strstr($item['photos'], '|', TRUE);
-                        $photo = new Photo;
-                        $photoInsert = $photo->fetch_by_id($photoID);
-
-                        if ($photoInsert !== null) {
-                            echo('<script>$("#itemLink'.$item['id'].'").css({background: "url(/assets/photos/'.$photoInsert.')"})</script>');
-                        }
+                    $currentCategory['text'];
+                    
+                    $text = explode('|', $currentCategory['text']);
+                    
+                    foreach ($text as $value) {
+                        ?>
+                            <p><?= $value; ?></p>
+                        <?php
+                    }
+                    
+                    if ($currentCategory['rubrix'] !== null) {
+                ?>
+                        <a href="https://i371527.hera.fhict.nl/rubrix?r=<?= $currentCategory['rubrix']; ?>" id="rubrixLink"><span class="textSpan">Rubrix van <?= $short; ?></span><span class="arrowSpan arrowSpanRubrix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span></a>
+                <?php
                     }
                 ?>
-                <!-- Load in items - get name, get description? -->
+            </div>
+            <div id="center">
+                <div id="filter"></div>
+                <?php
+                    $sprintCounter = 0;
+                    $sprints = false;
+                    foreach ($items as $item) {
+                        if ($item['sprint'] == null) {
+                ?>
+                            <a href="https://i371527.hera.fhict.nl/item?i=<?= $item['id']; ?>" class="itemLink item" id="itemLink<?= $item['id']; ?>">
+                                <div class="section">
+                                    <div class="firstClass">
+                                        <h1><?= $item['name']; ?></h1>
+                                        <h2><?= $item['description']; ?></h2>
+                                    </div>
+                                    <div>
+                                        <span class="arrowSpan">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                <?php
+                            
+                            $photoID = strstr($item['photos'], '|', TRUE);
+                            $photo = new Photo;
+                            $photoInsert = $photo->fetch_by_id($photoID);
+                            
+                            if ($photoInsert !== null) {
+                ?>
+                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)"})</script>
+                <?php
+                            }
+                        }
+                        else {
+                            $sprints = true;
+                            if ($item['sprint'] == $sprintCounter) {
+                ?>
+                            <a href="https://i371527.hera.fhict.nl/item?i=<?= $item['id']; ?>" class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
+                                <div class="section">
+                                    <div class="firstClass">
+                                        <h1><?= $item['name']; ?></h1>
+                                        <h2><?= $item['description']; ?></h2>
+                                    </div>
+                                    <div>
+                                        <span class="arrowSpan">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                <?php
+                                
+                                $photoID = strstr($item['photos'], '|', TRUE);
+                                $photo = new Photo;
+                                $photoInsert = $photo->fetch_by_id($photoID);
+                                
+                                if ($photoInsert !== null) {
+                ?>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)"})</script>
+                <?php
+                                }
+                            }
+                            else {
+                                $sprintCounter = $item['sprint'];  
+                ?>
+                                <div class="sprintHeader item itemSprint<?= $item['sprint']; ?>" id="sprintHeader<?= $item['sprint']; ?>">
+                                    <h1>Sprint <span class="accent"><?= $item['sprint']; ?></span></h1>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 15" id="separator"><polyline class="coolLine" points="5,4.5 11.2,10.5 17.5,4.5 23.7,10.5 30,4.5 36.2,10.5 42.5,4.5 48.8,10.5 55,4.5"/></svg>
+                                </div>
+                           
+                                <a href="https://i371527.hera.fhict.nl/item?i=<?= $item['id']; ?>" class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
+                                    <div class="section">
+                                        <div class="firstClass">
+                                            <h1><?= $item['name']; ?></h1>
+                                            <h2><?= $item['description']; ?></h2>
+                                        </div>
+                                        <div>
+                                            <span class="arrowSpan">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                <?php
+                                
+                                $photoID = strstr($item['photos'], '|', TRUE);
+                                $photo = new Photo;
+                                $photoInsert = $photo->fetch_by_id($photoID);
+                                
+                                if ($photoInsert !== null) {
+                ?>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)"})</script>
+                <?php
+                                }
+                            }
+                        }
+                    }
+                    
+                    if ($sprints == true && $sprintCounter > 1) {
+                        $sprintArray = array();
+                        $i = 1;
+                        while ($i <= $sprintCounter) {
+                            array_push($sprintArray, $i);
+                            $i++;
+                        }
+                        
+                ?>
+                        <div id="contentFilter">
+                            <h2>Filter op sprints</h2>
+                            <div>
+                                <span class="filterOption activeFilterOption" id="sprintFilterAll">Alles</span>
+                                <script>
+                                    $("#sprintFilterAll").on("click", function(){
+                                        $(".activeFilterOption").removeClass("activeFilterOption");
+                                        $(this).addClass("activeFilterOption");
+                                        filter = "all";
+                                        useFilter();
+                                    });
+                                </script>
+                    <?php
+                            foreach ($sprintArray as $sprint) {
+                                ?>
+                                    <span class="filterOption" id="sprintFilter<?= $sprint; ?>"><?= $sprint; ?></span>
+                                    <script>
+                                        $("#sprintFilter<?= $sprint; ?>").on("click", function(){
+                                            $(".activeFilterOption").removeClass("activeFilterOption");
+                                            $(this).addClass("activeFilterOption");
+                                            filter = <?= $sprint; ?>;
+                                            useFilter();
+                                        });
+                                    </script>
+                                <?php
+                            }
+                    ?>
+                            </div>
+                        </div>
+                        <script>
+                        $("#contentFilter").appendTo("#filter");
+                        var filter = "all";
+                        
+                        function useFilter() {
+                            if (filter === "all") {
+                                $(".item").show(750);
+                            }
+                            else {
+                                var itemSprint = ".itemSprint" + filter;
+                                $(".item:not("+itemSprint+")").hide(750);
+                                $(".item"+itemSprint).show(750);
+                            }
+                        }
+                    </script>
+                <?php
+                    }
+                    else {
+                ?>
+                        <script>
+                            $("#filter").remove();
+                        </script>
+                <?php
+                    }
+                ?>
                 <span class="divider"></span>
             </div>
             <div id="bottom">
-                <!-- Back to homepage and back to top button? -->
                 <span id="backtoHome" class="backtoHome">
+                    <span class="arrowSpan arrowSpanBTH"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span>
                     <span class="footerLink">Terug naar homepagina</span>
                 </span>
                 <span id="backLine"></span>
                 <span id="backtoTop" class="backtoTop">
                     <span class="footerLink">Terug naar boven</span>
+                    <span class="arrowSpan arrowSpanBTT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span>
                 </span>
             </div>
         </main>

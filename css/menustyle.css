@@ -125,7 +125,8 @@
     transition: 0.5s;
 }
 
-#menu_banner_top, #menu_banner_bottom {
+#menu_banner_top,
+#menu_banner_bottom {
     width: calc(100% - 15px);
     height: 25px;
     font-size: 15px;
@@ -177,9 +178,11 @@
     position: absolute;
     transition: width 0.25s;
 }
+
 .menuLink:hover {
     border-color: transparent;
 }
+
 .menuLink:hover:before {
     width: 100%;
 }

@@ -6,10 +6,10 @@ $username = "dbi371527";
 $password = "fhict123";
 
 try {
-	$PDO = new PDO("mysql:host=" . $servername . "; dbname=" . $dbname, $username, $password);
+	$PDO = new PDO("mysql:host=".$servername."; dbname=".$dbname, $username, $password);
 } 
 catch (PDOException $e) {
-    exit("Unable to create connection to DataBase " . $dbname);
+    exit("Unable to create connection to DataBase ".$dbname);
 }
 
 ?>

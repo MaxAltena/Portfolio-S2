@@ -163,10 +163,6 @@ span.accent {
     align-items: center;
 }
 
-#categories span.divider {
-    border-top: 1px solid #E9E9E9;
-}
-
 #categories a:hover {
     color: #000000;
 }
@@ -201,6 +197,7 @@ span.accent {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    border-top: 1px solid #E9E9E9;
 }
 
 .categorieLink:before {
@@ -242,6 +239,7 @@ span.arrowSpan:before {
   width: 48px;
   text-align: center;
 }
+
 span.arrowSpan:after {
   content: "";
   color: #000000;
@@ -256,6 +254,7 @@ span.arrowSpan:after {
   transition: 0.5s;
   z-index: -1;
 }
+
 span.arrowSpan.hovered:after {
   transform: scale(1);
 }
