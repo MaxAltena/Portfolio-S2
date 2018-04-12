@@ -60,6 +60,12 @@ $(document).ready(function() {
     });
     
     $(".backtoHome").on("click", function(){
-        window.location.href = "https://i371527.hera.fhict.nl/";
+        $("body").css({position: "absolute", left: 0});
+        var width = $("body").width();
+        $("body").animate({left: width}, 500, "easeInOutCubic", function(){
+            setTimeout(function(){
+                window.location = "../";
+            }, 500);
+        });
     });
 });

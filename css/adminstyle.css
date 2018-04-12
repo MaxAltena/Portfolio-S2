@@ -1,0 +1,465 @@
+#all {
+    width: 100%;
+    height: 100%;
+}
+
+.accent {
+    color: #FECD18;
+}
+
+#contentContainer {
+    margin: 0;
+    padding: 0;
+    width: calc(100vw - 250px);
+    min-height: 100vh;
+    height: 100%;
+    margin-left: 250px;
+    background: #FFFFFF url('../assets/background.png') repeat center;
+}
+
+#menu {
+    width: 248px;
+    height: calc(100vh - 4px);
+    position: fixed;
+    background: #E9E9E9;
+    border-right: 2px solid #E9E9E9;
+    border-top: 2px solid #E9E9E9;
+    border-bottom: 2px solid #E9E9E9;
+}
+
+#back {
+    padding: 1vh 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-align: center;
+    margin: 0 12.5%;
+    width: 75%;
+}
+
+#back:hover {
+    text-decoration: line-through;
+}
+
+#menu_box_logo {
+    width: auto;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu_logo_link {
+    display: block;
+    width: 90px;
+    cursor: pointer;
+}
+
+#menu_logo {
+    width: 80%;
+    padding: 10%;
+}
+
+#theM, #theA {
+    fill: #000000;
+}
+
+#theX {
+    fill: #FECD18;
+}
+
+#theX.animated {
+    animation: onhoverLOGO 1s ease-in-out;
+}
+
+@keyframes onhoverLOGO {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(25px, -50px); }
+    100% { transform: translate(0, 0); }
+}
+
+#logout {
+    position: absolute;
+    bottom: 2vh;
+    left: 2vh;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#logout:hover {
+    text-decoration: line-through;
+}
+
+#menu .item {
+    width: calc(100% - 2vw - 2px);
+    background: #DEDEDE;
+    color: #202020;
+    border-left: 2px solid #E9E9E9;
+    border-bottom: 2px solid #E9E9E9;
+    padding: 1vw;
+    cursor: pointer;
+    transition: color 0.5s;
+    transition: background 0.5s;
+}
+
+#menu .item.active {
+    background: #FECD18;
+    color: #FFFFFF;
+    transition: color 0.5s;
+    transition: background 0.5s;
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+}
+
+/* pages styling */
+h1.nicetry {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30vh;
+    color: #202020;
+}
+
+main .gridHeader {
+    grid-area: header;
+    width: 100%;
+    height: 100%;
+}
+
+main .gridHeader h1 {
+    height: 100%;
+    font-size: 5vh;
+}
+
+main .gridContent {
+    grid-area: content;
+}
+
+main {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 5% 30% 30% 30% 5%;
+    grid-template-rows: 5vh 7.5vh 5vh 77.5vh 5vh;
+    grid-template-areas:
+        ". . . . ."
+        ". header header header ."
+        ". . . . ."
+        ". content content content ."
+        ". . . . .";
+}
+
+#note {
+    width: 100%;
+    height: 20vh;
+    padding: 1vh 2.5%;
+    resize: none;
+    background: #FECD18;
+    background: url("../assets/stickynote.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 100% 20vh;
+    border: none;
+    color: #FFFFFF;
+    outline: none;
+    font-size: 2.5vh;
+}
+
+#note::placeholder {
+    color: #EEEEEE;
+}
+
+.weather {
+    width: 100%;
+    grid-area: weather;
+}
+
+#prank {
+    font-size: 1vh;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: underline;
+    align-self: flex-end;
+}
+
+#prank:hover {
+    color: #000000;
+    text-decoration: line-through;
+}
+
+h2.headerDashboardH2 {
+    font-size: 4vh;
+}
+
+p.headerDashboardP {
+    margin-top: 1vh;
+}
+
+.dashboardGridTopTop {
+    grid-area: topTop;
+}
+
+.dashboardGridTopBottom {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(4, 25%);
+}
+
+.dashboardGridTopBottomChild {
+    display: flex;
+    align-items: center;
+}
+
+.dashboardGridTopBottomLeft {
+    grid-area: topLeft;
+}
+
+.dashboardGridTopBottomCenter {
+    grid-area: topCenter;
+}
+
+.dashboardGridTopBottomRight {
+    grid-area: topRight;
+}
+
+.dashboardGrid .dashboardGridTop {
+    width: 100%;
+    height: 35vh;
+    grid-area: top;
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    display: grid;
+    grid-template-columns: 6% 26% 5% 26% 5% 26% 6%;
+    grid-template-rows: 3vh 10vh 4vh 15vh 3vh;
+    grid-template-areas: 
+        ". . . . . . ."
+        ". topTop topTop topTop topTop topTop ."
+        ". . . . . . ."
+        ". topLeft . topCenter . topRight ."
+        ". . . . . . .";
+}
+
+.dashboardGrid .dashboardGridBottomLeft {
+    grid-area: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboardGrid .dashboardGridBottomCenter {
+    grid-area: center;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 100% 1fr;
+    grid-template-rows: 1fr 165px 1fr;
+    grid-template-areas: ". . ." ". weather ." ". . .";
+}
+
+.dashboardGrid .dashboardGridBottomRight {
+    grid-area: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboardGrid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 30% 5% 30% 5% 30%;
+    grid-template-rows: 45vh 7.5vh 25vh;
+    grid-template-areas:
+        "top top top top top"
+        ". . . . ."
+        "left . center . right";
+}
+
+.dashboardGridTopBottomChild span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dashboardGridTopBottomChild span:hover{
+    text-decoration: line-through;
+}
+
+.accountContentP1 {
+    grid-area: P1;
+}
+
+.accountContentP2 {
+    grid-area: P2;
+}
+
+.accountContentP3 {
+    grid-area: P3;
+}
+
+.accountContentP4 {
+    grid-area: P4;
+}
+
+.accountContentP5 {
+    grid-area: P5;
+}
+
+.accountContentP6 {
+    grid-area: P6;
+}
+
+.accountGegevensContent {
+    display: grid;
+    grid-template-columns: repeat(2, 45%) auto;
+    grid-template-rows: repeat(3, 17.5%) auto;
+    grid-template-areas: 
+        "P1 P2 ."
+        "P3 P4 ."
+        "P5 P6 ."
+        ". . .";
+}
+
+.accountPasswordContentP1 {
+    grid-area: P1;
+    display: flex;
+    align-items: center;
+}
+
+.accountPasswordContentP2 {
+    grid-area: P2;
+    display: flex;
+    align-items: center;
+}
+
+.accountPasswordContentERROR {
+    grid-area: error;
+    display: flex;
+    align-items: center;
+    font-size: 1vh;
+    color: #FF0000;
+}
+
+.accountPasswordContentF1 {
+    grid-area: F1;
+    background: none;
+    border: 0.1vh solid #DEDEDE;
+    outline: none;
+    padding: 0 0.5vw;
+    cursor: text;
+    color: #202020;
+    font-size: 1.75vh;
+}
+
+.accountPasswordContentF1::placeholder {
+    color: #9E9E9E;
+}
+
+.accountPasswordContentF2 {
+    grid-area: F2;
+    background: none;
+    border: 0.1vh solid #DEDEDE;
+    outline: none;
+    padding: 0 0.5vw;
+    cursor: text;
+    color: #202020;
+    font-size: 1.75vh;
+}
+
+.accountPasswordContentF2::placeholder {
+    color: #9E9E9E;
+}
+
+.accountPasswordContentF3 {
+    grid-area: F3;
+    background: none;
+    border: 0.1vh solid #DEDEDE;
+    outline: none;
+    padding: 1%;
+    cursor: pointer;
+    font-size: 1.8vh;
+    color: #202020;
+    text-decoration: underline;
+    height: 90%;
+}
+
+.accountPasswordContentF3:hover {
+    text-decoration: line-through;
+}
+
+.accountContentForm {
+    grid-area: form;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 50%) ;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "P1 F1"
+        "P2 F2"
+        "error F3";
+}
+
+.accountPasswordContent {
+    display: grid;
+    grid-template-columns: repeat(2, 45%) auto;
+    grid-template-rows: 17.5% 5% auto;
+    grid-template-areas: 
+        "P1 P2 ."
+        ". . ."
+        "form form .";
+}
+
+.accountHeader {
+    grid-area: header;
+}
+
+.accountContent {
+    grid-area: content;
+}
+
+.accountGridTop,
+.accountGridBottom {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    display: grid;
+    grid-template-columns: 5% repeat(3, 30%) 5%;
+    grid-template-rows: 5% 15% 5% auto 5%;
+    grid-template-areas: 
+        ". . . . ."
+        ". header header header ."
+        ". . . . ."
+        ". content content content ."
+        ". . . . .";
+}
+
+.accountGridTop {
+    grid-area: top;
+}
+
+.accountGridBottom {
+    grid-area: bottom;
+}
+
+.accountGrid {
+    display: grid;
+    grid-template-columns: 40% auto;
+    grid-template-rows: 30% 5% 30% auto;
+    grid-template-areas:
+        "top ."
+        ". ."
+        "bottom ."
+        ". .";
+}
+
+.ui-effects-transfer {
+    border: 0.1vh solid #DEDEDE;
+}

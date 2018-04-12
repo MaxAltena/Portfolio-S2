@@ -1,5 +1,4 @@
 <?php
-
 include_once('includes/connection.php');
 include_once('includes/query.php');
 
@@ -10,9 +9,9 @@ $categories = $category->fetch();
 <div id="menu">
     <div id="left_banner">
         <div class="menu_box" id="menu_box_logo">
-            <a href="https://i371527.hera.fhict.nl/" id="menu_logo_link">
+            <div class="menu_logo_link">
                 <?php include('assets/logo.svg'); ?>
-            </a>
+            </div>
         </div>
         <div class="menu_box">
             <div id="BURGER">
@@ -20,35 +19,56 @@ $categories = $category->fetch();
             </div>
         </div>
         <div class="menu_box" id="menu_box_social">
-            <a href="https://www.linkedin.com/in/MaxAltena/" target="_blank" class="social_icon" id="LINKEDIN">
+            <div class="social_icon" id="LINKEDIN">
                 <?php include('assets/linkedin.svg'); ?>
-            </a>
-            <a href="https://www.flickr.com/people/154548504@N07/" target="_blank" class="social_icon" id="FLICKR">
+            </div>
+            <div class="social_icon" id="FLICKR">
                 <?php include('assets/flickr.svg'); ?>
-            </a>
-            <a href="https://github.com/MaxAltena/" target="_blank" class="social_icon" id="GITHUB">
+            </div>
+            <div class="social_icon" id="GITHUB">
                 <?php include('assets/github.svg'); ?>
-            </a>
+            </div>
         </div>
     </div>
     <div id="menu_banner">
-        <div id="menu_banner_top"><a href="https://i371527.hera.fhict.nl/documentatie/">documentatie</a></div>
+        <div id="menu_banner_top">
+            <div id="searchContainer">
+                <form id="searchForm" autocomplete="off">
+                    <input type="text" placeholder="Zoeken..." name="searchBar" id="searchBar" />
+                    <div id="searchButton"><?php include('assets/search.svg'); ?></div>
+                    <input type="submit" id="searchSubmit" value="" />
+                </form>
+                <div id="searchResults">
+                </div>
+            </div>
+        </div>
+        
         <div id="menu_banner_middle">
-            <a href="https://i371527.hera.fhict.nl/" class="menuLink">
+            <div class="menuLink" id="homeLink">
                 <div>
                     <h1>Home</h1>
                     <h2>Van alles wat</h2>
                 </div>
-            </a>
+            </div>
+            <script></script>
             <?php
             foreach($categories as $category) {
-                echo('<a href="https://i371527.hera.fhict.nl/categorie?c='.$category['short'].'" class="menuLink"><div><h1>'.$category['short'].'</h1><h2>'.$category['name'].'</h2></div></a>');
+            ?>
+            <div class="menuLink" id="<?= $category['short']; ?>Link">
+                <div>
+                    <h1><?= $category['short']; ?></h1>
+                    <h2><?= $category['name']; ?></h2>
+                </div>
+            </div>
+            <script>$("#<?= $category['short']; ?>Link").on("click", function(){ $("#menu_banner").css({position: "absolute"}); $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/categorie?c=<?= $category['short']; ?>"; }, 500);});});</script>
+            <?php
             }
             ?>
         </div>
         <div id="menu_banner_bottom">
-            <a href="https://i371527.hera.fhict.nl/admin/">aanmelden</a>
-            <p>Gemaakt door Max Altena</p>
+            <p id="documentatieLink">documentatie</p>
+            <p id="adminLink">inloggen</p>
         </div>
     </div>
 </div>
+<script src="../js/menu.js"></script>

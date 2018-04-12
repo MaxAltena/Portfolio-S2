@@ -3,7 +3,7 @@
 class Category {
     public function fetch() {
         global $PDO;
-        $query = $PDO->prepare('SELECT short, name, photo FROM categories');
+        $query = $PDO->prepare('SELECT short, name, preview FROM categories');
         $query->execute();
         return $query->fetchAll();
     }
@@ -17,19 +17,19 @@ class Category {
         return $result[0];
     }
     
-    public function fetch_by_rubrix($id) {
+    public function fetch_for_rubrix($short) {
         global $PDO;
-        $query = $PDO->prepare('SELECT name, short FROM categories WHERE rubrix = ?');
-        $query->bindValue(1, $id);
+        $query = $PDO->prepare('SELECT name, short FROM categories WHERE short = ?');
+        $query->bindValue(1, $short);
         $query->execute();
         $result = $query->fetchAll();
         return $result[0];
     }
     
-    public function fetch_by_item($id) {
+    public function fetch_by_item($name) {
         global $PDO;
-        $getCATIDfromITEMID = $PDO->prepare('SELECT category FROM items WHERE id = ?');
-        $getCATIDfromITEMID->bindValue(1, $id);
+        $getCATIDfromITEMID = $PDO->prepare('SELECT category FROM items WHERE name = ?');
+        $getCATIDfromITEMID->bindValue(1, $name);
         $getCATIDfromITEMID->execute();
         $categoryID = $getCATIDfromITEMID->fetch(PDO::FETCH_COLUMN, 0);
         
@@ -48,23 +48,23 @@ class Item {
         $getIDfromSHORT->execute();
         $categoryID = $getIDfromSHORT->fetch(PDO::FETCH_COLUMN, 0);
         
-        $getITEMSfromCAT = $PDO->prepare('SELECT id, name, description, photos, sprint FROM items WHERE category = ? ORDER BY sprint ASC');
+        $getITEMSfromCAT = $PDO->prepare('SELECT id, name, description, preview, sprint FROM items WHERE category = ? ORDER BY sprint ASC');
         $getITEMSfromCAT->bindValue(1, $categoryID);
         $getITEMSfromCAT->execute();
         return $getITEMSfromCAT->fetchAll();
     }
     
-    public function fetch_ids() {
+    public function fetch_names() {
         global $PDO;
-        $query = $PDO->prepare('SELECT id FROM items');
+        $query = $PDO->prepare('SELECT name FROM items');
         $query->execute();
         return $query->fetchAll();
     }
     
-    public function fetch_item($id) {
+    public function fetch_item($name) {
         global $PDO;
-        $query = $PDO->prepare('SELECT * FROM items WHERE id = ?');
-        $query->bindValue(1, $id);
+        $query = $PDO->prepare('SELECT * FROM items WHERE name = ?');
+        $query->bindValue(1, $name);
         $query->execute();
         return $query->fetch();
     }
@@ -84,15 +84,15 @@ class Photo {
 class Rubrix {
     public function fetch() {
         global $PDO;
-        $query = $PDO->prepare('SELECT DISTINCT rubrix_id FROM rubrix');
+        $query = $PDO->prepare('SELECT DISTINCT name FROM rubrix');
         $query->execute();
         return $query->fetchAll();
     }
     
-    public function fetch_rubrix($id) {
+    public function fetch_rubrix($name) {
         global $PDO;
-        $query = $PDO->prepare('SELECT id, criterium, zeer, goed, voldoende, onvoldoende, value FROM rubrix WHERE rubrix_id = ?');
-        $query->bindValue(1, $id);
+        $query = $PDO->prepare('SELECT id, name, criterium, zeer, goed, voldoende, onvoldoende, value FROM rubrix WHERE name = ?');
+        $query->bindValue(1, $name);
         $query->execute();
         return $query->fetchAll();
     }

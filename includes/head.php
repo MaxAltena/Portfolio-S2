@@ -20,4 +20,5 @@
 <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
 <meta name="theme-color" content="#FECD18">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Hind:400,700|Open+Sans:400,400i,700" rel="stylesheet">

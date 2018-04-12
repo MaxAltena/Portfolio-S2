@@ -22,9 +22,13 @@
     padding-top: 10px;
 }
 
-#menu_logo_link {
+.menu_logo_link {
     display: block;
     width: 90px;
+}
+
+.menu_logo_link:hover {
+    cursor: pointer;
 }
 
 #menu_logo {
@@ -61,6 +65,10 @@
     padding: 5px;
     margin: 5px;
     width: 20px;
+}
+
+.social_icon:hover {
+    cursor: pointer;
 }
 
 #BURGER {
@@ -148,17 +156,21 @@
     justify-content: space-between;
 }
 
-#menu_banner_top a:hover,
-#menu_banner_bottom a:hover{
-	color: #FECD18;
-    transition: 0.2s;
+#adminLink,
+#documentatieLink {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#adminLink:hover,
+#documentatieLink:hover {
+    text-decoration: line-through;
 }
 
 .menuLink {
     width: 89%;
     padding-left: 10%;
     padding-right: 1%;
-    height: 8vh;
     padding-top: 2%;
     padding-bottom: 2%;
     display: inline-block;
@@ -181,6 +193,7 @@
 
 .menuLink:hover {
     border-color: transparent;
+    cursor: pointer;
 }
 
 .menuLink:hover:before {
@@ -203,6 +216,101 @@
 
 .menuLink.current div h2 {
 	color: #FECD18;
+}
+
+#searchBar {
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    width: 100%;
+    margin: 0 10px;
+    background: none;
+    border: none;
+    outline: none;
+    color: #202020;
+}
+
+#searchIcon {
+    width: 20px;
+    height: 20px;
+    padding: 2.5px;
+    margin: 0 7.5px 0 0;
+    cursor: pointer;
+}
+
+#searchIcon path {
+    fill: #202020;
+}
+
+#searchSubmit {
+    display: none;
+}
+
+.searchResultEntry {
+    display: flex;
+    align-items: center;
+    background: #EEEEEE;
+    border-bottom: 1px solid #DEDEDE;
+    
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+.searchLink {
+    cursor: pointer;
+    font-weight: 400;
+    width: 100%;
+    height: 30px;
+    text-decoration: underline;
+    padding: 0 7.5px;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+.searchLink:hover {
+	text-decoration: line-through;
+}
+
+.searchResultEntry:nth-last-child(2) {
+	border: none;
+}
+
+.searchBold {
+    font-weight: 800;
+}
+
+#searchResults {
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 200;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 20%);
+}
+
+#searchForm {
+    grid-area: form;
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    background: #EEEEEE;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchContainer {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-areas: ". form .";
 }
 
 body.faded {

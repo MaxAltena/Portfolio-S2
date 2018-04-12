@@ -1,30 +1,78 @@
-main {
-    height: 100vh;
-    background: #FFFFFF url('../assets/background.png') repeat center;
+body {
+    overflow: hidden;
+}
+
+#rubrixHeader {
+    grid-area: title;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-h1 {
+#rubrixHeader h1 {
     text-align: center;
-    padding: 1%;
+}
+
+#rubrixHeader h1 .accent {
+    color: #FECD18;
+}
+
+#rubrixContent {
+    grid-area: content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rubrixTerug {
+    grid-area: terug;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.terug {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+main {
+    height: 100vh;
+    max-height: 100vh;
+    background: #FFFFFF url('../assets/background.png') repeat center;
+    display: grid;
+    grid-template-columns: 2.5% 40% 15% 40% 2.5%;
+    grid-template-rows: 2.5% 10% 2.5% 75% 2.5% 5% 2.5%;
+    grid-template-areas: 
+        ". . . . ."
+        ". title title title ."
+        ". . . . ."
+        ". content content content ."
+        ". . . . ."
+        ". . terug . ."
+        ". . . . .";
 }
 
 table {
-    width: 95%;
-    margin: 0 2.5%;
+    width: 100%;
     background: #FFFFFF;
     border: 3px solid #E9E9E9;
+    font-size: 1.7vh;
 }
 
 th, td {
-    padding: 5px;
+    padding: 2.5px;
 }
 
 th {
     text-align: left;
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
 td {
@@ -49,16 +97,6 @@ td:nth-child(4) {
 
 td:nth-child(5) {
     background: #DAEEF3;
-}
-
-.terug {
-    width: 20%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 1% 40%;
 }
 
 .arrow {

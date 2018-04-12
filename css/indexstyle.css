@@ -167,12 +167,12 @@ span.accent {
     color: #000000;
 }
 
-#categories a div h1 {
+#categories div h1 {
     font-size: 1.5em;
     color: #000000;
 }
 
-#categories a div h2 {
+#categories div h2 {
     font-size: 0.9em;
     color: #7D7D7D;
 }
@@ -191,11 +191,10 @@ span.accent {
     position: relative;
     transition: 0.5s;
     z-index: 3;
-    background: #000000;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #434343, #000000);
-    background: linear-gradient(to left, #434343, #000000);
-    background-repeat: no-repeat;
-    background-position: center;
+    background: #000000;
+    background: -webkit-linear-gradient(to left, #434343, #202020);
+    background: linear-gradient(to left, #434343, #202020);
+    background-position: center center;
     background-size: cover;
     border-top: 1px solid #E9E9E9;
 }
@@ -214,6 +213,10 @@ span.accent {
 
 .categorieLink:hover:before {
     width: 0%;
+}
+
+.categorieLink:hover {
+    cursor: pointer;
 }
 
 span.arrowSpan {

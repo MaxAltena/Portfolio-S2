@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once('includes/connection.php');
 include_once('includes/query.php');
 
@@ -10,16 +10,16 @@ if (isset($_GET['r'])) {
         $rubrixs = $rubrix->fetch();
         
         foreach ($rubrixs as $rubrix) { 
-            array_push($rubrixArray, $rubrix['rubrix_id']); 
+            array_push($rubrixArray, $rubrix['name']); 
         }
         if (in_array($_GET['r'], $rubrixArray)) {
-            $rubrixID = $_GET['r'];
+            $short = $_GET['r'];
             
             $getRubrix = new Rubrix;
-            $currentRubrix = $getRubrix->fetch_rubrix($rubrixID);
+            $currentRubrix = $getRubrix->fetch_rubrix($short);
             
             $getCategory = new Category;
-            $currentCategory = $getCategory->fetch_by_rubrix($rubrixID);
+            $currentCategory = $getCategory->fetch_for_rubrix($short);
 ?>
 <html lang="nl">
     <head>
@@ -32,8 +32,10 @@ if (isset($_GET['r'])) {
         <?php include_once('includes/loader.php'); ?>
         <?php include_once('includes/menu.php'); ?>
         <main>
-            <div>
-                <h1>Rubrix voor <?= $currentCategory['name']; ?></h1>
+            <div id="rubrixHeader">
+                <h1>Rubrix voor <?= $currentCategory['name']; ?> (<span class="accent"><?= $currentCategory['short']; ?></span>)</h1>
+            </div>
+            <div id="rubrixContent">
                 <table>
                     <tr>
                         <th>Criterium</th>
@@ -45,7 +47,7 @@ if (isset($_GET['r'])) {
         <?php
             foreach ($currentRubrix as $value) {
         ?>
-        
+
                 <tr>
                     <td class="criterium criterium<?= $value['id']; ?>"><?= $value['criterium']; ?></td>
                     <td class="zeer zeer<?= $value['id']; ?>"><?= $value['zeer']; ?></td>
@@ -60,27 +62,31 @@ if (isset($_GET['r'])) {
             }
         ?>
                 </table>
-                <a href="https://i371527.hera.fhict.nl/categorie?c=<?= $currentCategory['short']; ?>" class="terug"><span class="arrowSpan arrowSpanRubrix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <?= $currentCategory['short']; ?></span></a>
+            </div>
+            <div id="rubrixTerug">
+                <div class="terug">
+                    <span class="arrowSpan arrowSpanRubrix"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <span class="accent"><?= $currentCategory['short']; ?></span></span>
+                    <script>$(".terug").on("click", function(){$("body").css({position: "absolute", left: 0}); var width = $("body").width(); $("body").animate({left: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/categorie?c=<?= $currentCategory['short']; ?>"; }, 500);});});</script>
+                </div>
             </div>
         </main>
-        <script src="js/menu.js"></script>
         <script src="js/rubrix.js"></script>
     </body>
 </html>
 <?php
         }
         else {
-            header('Location: https://i371527.hera.fhict.nl/');
+            header('Location: ../');
             exit();
         }
     }
     else {
-        header('Location: https://i371527.hera.fhict.nl/');
+        header('Location: ../');
         exit();
     }
 }
 else {
-    header('Location: https://i371527.hera.fhict.nl/');
+    header('Location: ../');
     exit();
 }
 ?>

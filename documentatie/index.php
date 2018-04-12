@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <div id="backButton"><a href="https://i371527.hera.fhict.nl/">← terug naar website</a></div>
+        <div id="backButton"><a href="../">← terug naar website</a></div>
         <nav>
             <div id="mainNAV">
                 <button id="mainSprint1" class="mainMenu activeMain">Sprint 1</button>
@@ -28,93 +28,13 @@
             </div>
         </nav>
         <main>
-            <div id="contentSprint1" class="mainContent activeMainContent">
-                <div id="contentSprint1_Tab1" class="subContent activeSubContent">
-                    <h1>Concept</h1>
-                </div>
-                <div id="contentSprint1_Tab2" class="subContent">
-                    <h1>Functioneel ontwerp</h1>
-                </div>
-                <div id="contentSprint1_Tab3" class="subContent">
-                    <h1>Prototype</h1>
-                </div>
-                <div id="contentSprint1_Tab4" class="subContent">
-                    <h1>Code snippets</h1>
-                    <p data-height="500" data-theme-id="dark" data-slug-hash="QQqjmv" data-default-tab="html,result" data-user="MaxAltena" data-embed-version="2" data-pen-title="Trying CSS before and after" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/MaxAltena/pen/QQqjmv/">CSS before and after</a> by Max (<a href="https://codepen.io/MaxAltena">@MaxAltena</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-                    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-                </div>
-                <div id="contentSprint1_Tab5" class="subContent">
-                    <h1>Feedback</h1>
-                </div>
-            </div>
-            <div id="contentSprint2" class="mainContent">
-                <div id="contentSprint2_Tab1" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint2_Tab2" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint2_Tab3" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint2_Tab4" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint2_Tab5" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-            </div>
-            <div id="contentSprint3" class="mainContent">
-                <div id="contentSprint3_Tab1" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint3_Tab2" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint3_Tab3" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint3_Tab4" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint3_Tab5" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-            </div>
-            <div id="contentSprint4" class="mainContent">
-                <div id="contentSprint4_Tab1" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint4_Tab2" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint4_Tab3" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint4_Tab4" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint4_Tab5" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-            </div>
-            <div id="contentSprint5" class="mainContent">
-                <div id="contentSprint5_Tab1" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint5_Tab2" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint5_Tab3" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint5_Tab4" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-                <div id="contentSprint5_Tab5" class="subContent">
-                    <p>Nog geen content</p>
-                </div>
-            </div>
+            <?php
+                include_once('sprint1.php');
+                include_once('sprint2.php');
+                include_once('sprint3.php');
+                include_once('sprint4.php');
+                include_once('sprint5.php');
+            ?>
         </main>
     </body>
 </html>

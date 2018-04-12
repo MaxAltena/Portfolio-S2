@@ -2,47 +2,73 @@ main {
     background: #202020;
 }
 
-#top {
-    width: 60%;
-    padding: 0 20%;
-    min-height: 75vh;
-    background: #FFFFFF url('../assets/background.png') repeat center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#top h1 {
+#topTitle {
+    grid-area: title;
     width: 100%;
-    height: auto;
-    font-size: 3em;
-    text-align: center;
-    padding: 10% 0;
-}
-
-#top h1 span.accent {
-    color: #FECD18;
-}
-
-#top p {
-    width: 100%;
-    height: auto;
-    text-align: justify;
-    padding: 1%;
-}
-
-#top a {
-    width: 25%;
-    height: 50px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
-    color: rgba(0, 0, 0, 0.7);
+}
+
+#topTitle h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+#topTitle h1 span.accent {
+    color: #FECD18;
+}
+
+#topContent {
+    grid-area: content;
+    width: 100%;
+    height: 100%;
+}
+
+#topContent p {
+    width: 100%;
+    height: auto;
+    text-align: justify;
+}
+
+#topRubrix {
+    grid-area: rubrix;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rubrixLink {
+    font-weight: 800;
+    height: 50px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .arrowSpanRubrix {
     margin-left: 25px;
+}
+
+#top {
+    width: 100%;
+    min-height: calc(75vh - 1px);
+    height: auto;
+    background: #FFFFFF url('../assets/background.png') repeat center;
+    display: grid;
+    grid-template-columns: 10% 30% 20% 30% 10%;
+    grid-template-rows: 5% 15% 5% 60% 5% 5% 5%;
+    grid-template-areas: 
+        ". . . . ."
+        ". title title title ."
+        ". . . . ."
+        ". content content content ."
+        ". . . . ."
+        ". . rubrix . ."
+        ". . . . .";
 }
 
 #center {
@@ -81,12 +107,12 @@ main {
     color: #000000;
 }
 
-#center a div h1 {
+#center div h1 {
     font-size: 1.5em;
     color: #000000;
 }
 
-#center a div h2 {
+#center div h2 {
     font-size: 0.9em;
     color: #7D7D7D;
 }
@@ -105,11 +131,10 @@ main {
     position: relative;
     transition: 0.5s;
     z-index: 3;
-    background: #000000;  /* fallback for old browsers */
+    background: #000000;
     background: -webkit-linear-gradient(to left, #434343, #000000);
     background: linear-gradient(to left, #434343, #000000);
-    background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     background-size: cover;
     border-top: 1px solid #E9E9E9;
 }
@@ -128,6 +153,10 @@ main {
 
 .itemLink:hover:before {
     width: 0%;
+}
+
+.itemLink:hover {
+    cursor: pointer;
 }
 
 span.arrowSpan {
@@ -184,11 +213,11 @@ span.arrowSpan.hovered:after {
     border-top: 1px solid #E9E9E9;
 }
 
-.sprintHeader h1 {
+#center div.sprintHeader h1 {
 	font-size: 2.25em;
 }
 
-.sprintHeader h1 .accent {
+.accent {
     color: #FECD18;
 }
 
@@ -227,11 +256,11 @@ span.arrowSpan.hovered:after {
 }
 
 #contentFilter div span:hover {
-    font-weight: 700;
+    text-decoration: underline;
 }
 
 #contentFilter div span.activeFilterOption {
-    text-decoration: underline;
+    font-weight: 700;
 }
 
 #bottom {
