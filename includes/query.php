@@ -98,4 +98,13 @@ class Rubrix {
     }
 }
 
+class User {
+    public function fetch_ranks() {
+        global $PDO;
+        $query = $PDO->prepare('SELECT * FROM users WHERE rank != 2');
+        $query->execute();
+        return $query->fetchAll();
+    }
+}
+
 ?>

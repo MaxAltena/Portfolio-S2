@@ -451,7 +451,7 @@ p.headerDashboardP {
 
 .accountGrid {
     display: grid;
-    grid-template-columns: 40% auto;
+    grid-template-columns: 60% auto;
     grid-template-rows: 30% 5% 30% auto;
     grid-template-areas:
         "top ."
@@ -462,4 +462,45 @@ p.headerDashboardP {
 
 .ui-effects-transfer {
     border: 0.1vh solid #DEDEDE;
+}
+
+.rankContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+}
+
+.filterP {
+    width: 7.5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filterOption {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filterOption:hover {
+    text-decoration: line-through;
+}
+
+.filterOption.activeFilter {
+    font-weight: 800;
+}
+
+.rankTable th.user { 
+    min-width: 175px;
+    text-align: left;
+}
+
+.rankTable th.rank {
+    min-width: 75px;
+    text-align: left;
+}
+
+.errorText {
+    margin-left: 25px;
+    font-size: 0.9em;
 }
