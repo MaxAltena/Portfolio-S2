@@ -9,33 +9,15 @@ $(document).ready(function() {
     });
     
     $("#back").on("click", function(){
-        $("#all").css({position: "absolute", left: 0})
-        var width = $("#all").width();
-        $("#all").animate({left: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "../";
-            }, 500);
-        });
+        window.location = "../";
     });
     
     $(".menu_logo_link").on("click", function(){
-        $("#all").css({position: "absolute", left: 0})
-        var width = $("#all").width();
-        $("#all").animate({left: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "../";
-            }, 500);
-        });
+        window.location = "../";
     });
     
     $("#logout").on("click", function(){
-       $("#all").css({position: "absolute", left: 0})
-        var width = $("#all").width();
-        $("#all").animate({left: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "../logout";
-            }, 500);
-        });
+        window.location = "../logout";
     });
     
     var clicked = false;

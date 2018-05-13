@@ -59,13 +59,7 @@ if (isset($_SESSION['ingelogd'])) {
                                                 cache: false,
                                                 success: function(result){
                                                     if (result === "success"){
-                                                        $("#all").css({position: "absolute", right: 0})
-                                                        var width = $("#all").width();
-                                                        $("#all").animate({right: width}, 500, "easeInOutCubic", function(){
-                                                            setTimeout(function(){
-                                                                window.location = "../../login";
-                                                            }, 500);
-                                                        });
+                                                        window.location = "../../login";
                                                     }
                                                     else {
                                                         $(".accountPasswordContentERROR").fadeIn(300).text(result);

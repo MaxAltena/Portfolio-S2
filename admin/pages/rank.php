@@ -26,14 +26,12 @@ if (isset($_SESSION['ingelogd'])) {
                         switch(filter){
                             default:
                             case "Alles":
-                                // Show everything
                                 $(".activeFilter").removeClass("activeFilter");
                                 $(this).addClass("activeFilter");
                                 
                                 $(".trRankAll").show();
                                 break;
                             case "0":
-                                // Show 0 - Hide rank 1
                                 $(".activeFilter").removeClass("activeFilter");
                                 $(this).addClass("activeFilter");
                                 
@@ -41,7 +39,6 @@ if (isset($_SESSION['ingelogd'])) {
                                 $(".trRank1").hide();
                                 break;
                             case "1":
-                                // Show 1 - Hide rank 0
                                 $(".activeFilter").removeClass("activeFilter");
                                 $(this).addClass("activeFilter");
                                 

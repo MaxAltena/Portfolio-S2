@@ -21,15 +21,7 @@ $page = "Home";
         <?php include_once('includes/loader.php'); ?>
         <?php include_once('includes/menu.php'); ?>
         <main>
-            <div id="splash"> <!-- Cool entry game/inspiratieweek? -->
-                <div id="splash_overlay">
-                    <div>
-                        <h1>Max Altena</h1>
-                        <h2>ICT & Media Design student</h2>
-                    </div>
-                </div>
-                <div id="ScrollDown"><span></span></div>
-            </div>
+            <?php include_once('includes/splash.php'); ?>
             <div id="home">
                 <div>
                     <h1>Over <span class="accent">Max Altena</span></h1>
@@ -55,14 +47,14 @@ $page = "Home";
                             </div>
                         </div>
                     </div>
-                    <script>$("#categorieLink<?= $category['short']; ?>").on("click", function(){$("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/categorie?c=<?= $category['short']; ?>"; }, 500);});});</script>
+                    <script>$("#categorieLink<?= $category['short']; ?>").on("click", function(){ window.location = "/categorie?c=<?= $category['short']; ?>" });</script>
                 <?php
                     $photo = new Photo;
                     $photoInsert = $photo->fetch_by_id($category['preview']);
 
                     if ($photoInsert !== null) {
                 ?>
-                        <script>$("#categorieLink<?= $category['short']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)"})</script>
+                        <script>$("#categorieLink<?= $category['short']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)"})</script>
                 <?php
                     }
                 }

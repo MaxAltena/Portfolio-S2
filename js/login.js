@@ -1,12 +1,6 @@
 $(document).ready(function(){
     $("#backTo").on("click", function(){
-        $("main").css({position: "absolute", left: 0})
-        var width = $("main").width();
-        $("main").animate({left: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "../";
-            }, 500);
-        });
+        window.location = "../";
     });
     
     $("#submitLogin").on("click", function(){
@@ -27,13 +21,7 @@ $(document).ready(function(){
                     cache: false,
                     success: function(result){
                         if (result === "Login"){
-                            $("main").css({position: "absolute", right: 0})
-                            var width = $("main").width();
-                            $("main").animate({right: width}, 500, "easeInOutCubic", function(){
-                                setTimeout(function(){
-                                    window.location = "/admin/userdata";
-                                }, 500);
-                            });
+                            window.location = "/admin/userdata";
                         }
                         else {
                             $("#error").fadeIn(300);
@@ -83,13 +71,7 @@ $(document).ready(function(){
                     cache: false,
                     success: function(result){
                         if (result === "Register"){
-                            $("main").css({position: "absolute", right: 0})
-                            var width = $("main").width();
-                            $("main").animate({right: width}, 500, "easeInOutCubic", function(){
-                                setTimeout(function(){
-                                    window.location = "/admin/userdata";
-                                }, 500);
-                            });
+                            window.location = "/admin/userdata";
                         }
                         else {
                             $("#error").fadeIn(300);

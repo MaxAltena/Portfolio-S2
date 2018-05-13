@@ -38,8 +38,12 @@ $categories = $category->fetch();
                     <div id="searchButton"><?php include('assets/search.svg'); ?></div>
                     <input type="submit" id="searchSubmit" value="" />
                 </form>
-                <div id="searchResults">
-                </div>
+                <div id="searchResults"></div>
+                <script>
+                    $(document).ready(function(){
+                        $("#searchResults").css({height: "0"});
+                    });
+                </script>
             </div>
         </div>
         

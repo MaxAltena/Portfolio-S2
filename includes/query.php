@@ -48,7 +48,7 @@ class Item {
         $getIDfromSHORT->execute();
         $categoryID = $getIDfromSHORT->fetch(PDO::FETCH_COLUMN, 0);
         
-        $getITEMSfromCAT = $PDO->prepare('SELECT id, name, description, preview, sprint FROM items WHERE category = ? ORDER BY sprint ASC');
+        $getITEMSfromCAT = $PDO->prepare('SELECT id, name, description, preview, sprint, spotlight FROM items WHERE category = ? ORDER BY sprint ASC');
         $getITEMSfromCAT->bindValue(1, $categoryID);
         $getITEMSfromCAT->execute();
         return $getITEMSfromCAT->fetchAll();
@@ -73,7 +73,7 @@ class Item {
 class Photo {
     public function fetch_by_id($id) {
         global $PDO;
-        $query = $PDO->prepare('SELECT name FROM photos WHERE id = ?');
+        $query = $PDO->prepare('SELECT name FROM media WHERE id = ?');
         $query->bindValue(1, $id);
         $query->execute();
         $result = $query->fetch();
@@ -91,7 +91,7 @@ class Rubrix {
     
     public function fetch_rubrix($name) {
         global $PDO;
-        $query = $PDO->prepare('SELECT id, name, criterium, zeer, goed, voldoende, onvoldoende, value FROM rubrix WHERE name = ?');
+        $query = $PDO->prepare('SELECT * FROM rubrix WHERE name = ?');
         $query->bindValue(1, $name);
         $query->execute();
         return $query->fetchAll();

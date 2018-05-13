@@ -47,7 +47,6 @@ if (isset($_GET['r'])) {
         <?php
             foreach ($currentRubrix as $value) {
         ?>
-
                 <tr>
                     <td class="criterium criterium<?= $value['id']; ?>"><?= $value['criterium']; ?></td>
                     <td class="zeer zeer<?= $value['id']; ?>"><?= $value['zeer']; ?></td>
@@ -55,8 +54,22 @@ if (isset($_GET['r'])) {
                     <td class="voldoende voldoende<?= $value['id']; ?>"><?= $value['voldoende']; ?></td>
                     <td class="onvoldoende onvoldoende<?= $value['id']; ?>"><?= $value['onvoldoende']; ?></td>
                 </tr>
+                <div class="opinionBlock" id="opinion<?= $value['id']; ?>" style="display: none;"><p><?= $value['opinion']; ?></p></div>
                 <script>
                     $(".<?= $value['value'].$value['id']; ?>").addClass("selected");
+                    $(".<?= $value['value'].$value['id']; ?>.selected").on({
+                        mousemove: function(e){
+                            var top = e.pageY + 10;
+                            var left = e.pageX - 265;
+                            $("#opinion<?= $value['id']; ?>").css({top: top, left: left });
+                        },
+                        mouseenter: function(e){
+                            $("#opinion<?= $value['id']; ?>").css({ display: "block" });
+                        },
+                        mouseleave: function(){
+                            $("#opinion<?= $value['id']; ?>").css({ display: "none" });
+                        }
+                    });
                 </script>
         <?php
             }
@@ -66,7 +79,7 @@ if (isset($_GET['r'])) {
             <div id="rubrixTerug">
                 <div class="terug">
                     <span class="arrowSpan arrowSpanRubrix"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <span class="accent"><?= $currentCategory['short']; ?></span></span>
-                    <script>$(".terug").on("click", function(){$("body").css({position: "absolute", left: 0}); var width = $("body").width(); $("body").animate({left: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/categorie?c=<?= $currentCategory['short']; ?>"; }, 500);});});</script>
+                    <script>$(".terug").on("click", function(){ window.location = "/categorie?c=<?= $currentCategory['short']; ?>";});</script>
                 </div>
             </div>
         </main>

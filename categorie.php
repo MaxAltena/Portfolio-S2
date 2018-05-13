@@ -21,6 +21,17 @@ if (isset($_GET['c'])) {
             
             $item = new Item;
             $items = $item->fetch_for_preview_by_category($short);
+            
+            $queryCatID = $PDO->prepare('SELECT id FROM categories WHERE short = ?');
+            $queryCatID->bindValue(1, $short);
+            $queryCatID->execute();
+            $result = $queryCatID->fetch();
+            $categoryID = $result[0];
+            
+            $queryHasSpotlight = $PDO->prepare('SELECT * FROM items WHERE category = ? AND spotlight = 1');
+            $queryHasSpotlight->bindValue(1, $categoryID);
+            $queryHasSpotlight->execute();
+            $HasSpotlight = $queryHasSpotlight->rowCount() ? true : false;
 ?>
 <html lang="nl">
     <head>
@@ -60,20 +71,65 @@ if (isset($_GET['c'])) {
                             </svg>
                         </span>
                     </div>
-                    <script>$("#rubrixLink").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/rubrix?r=<?= $short; ?>"; }, 500);});});</script>
+                    <script>$("#rubrixLink").on("click", function(){ window.location = "/rubrix?r=<?= $short; ?>"; });</script>
                 </div>
                 <?php
                     }
                 ?>
             </div>
             <div id="center">
-                <div id="filter"></div>
+        <?php
+            if ($HasSpotlight == "1"){
+                $query = $PDO->prepare('');
+        ?>
+                <div id="spotlight">
+                    <h1>Uitgelichte opdrachten</h1>
+                    <svg viewBox="0 0 60 15" id="separator">
+                        <polyline class="coolLine" points="5,4.5 11.2,10.5 17.5,4.5 23.7,10.5 30,4.5 36.2,10.5 42.5,4.5 48.8,10.5 55,4.5"/>
+                    </svg>
+                </div>
+                <div id="spotlightContent">
+        <?php
+                foreach ($items as $item){
+                    if ($item['spotlight'] == 1){
+        ?>
+                    <div class="itemLink" id="itemLink<?= $item['id']; ?>">
+                                <div class="section">
+                                    <div class="firstClass">
+                                        <h1><?= $item['name']; ?></h1>
+                                        <h2><?= $item['description']; ?></h2>
+                                    </div>
+                                    <div>
+                                        <span class="arrowSpan">
+                                            <svg viewBox="0 0 24 24" class="arrow">
+                                                <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
                 <?php
+                            $photo = new Photo;
+                            $photoInsert = $photo->fetch_by_id($item['preview']);
+
+                            if ($photoInsert !== null) {
+                ?>
+                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                <?php
+                            }
+                    }
+                }
+        ?>
+                </div>
+                <div id="filter"></div>
+        <?php
+            }  
                     $sprintCounter = 0;
                     $sprints = false;
                     foreach ($items as $item) {
                         if ($item['sprint'] == null) {
-                ?>
+        ?>
                             <div class="itemLink item" id="itemLink<?= $item['id']; ?>">
                                 <div class="section">
                                     <div class="firstClass">
@@ -89,14 +145,14 @@ if (isset($_GET['c'])) {
                                     </div>
                                 </div>
                             </div>
-                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/item?i=<?= $item['name']; ?>"; }, 500);});});</script>
+                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
                 <?php
                             $photo = new Photo;
                             $photoInsert = $photo->fetch_by_id($item['preview']);
 
                             if ($photoInsert !== null) {
                 ?>
-                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
                 <?php
                             }
                         }
@@ -119,14 +175,14 @@ if (isset($_GET['c'])) {
                                     </div>
                                 </div>
                             </div>
-                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/item?i=<?= $item['name']; ?>"; }, 500);});});</script>
+                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
                 <?php
                                 $photo = new Photo;
                                 $photoInsert = $photo->fetch_by_id($item['preview']);
 
                                 if ($photoInsert !== null) {
                 ?>
-                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
                 <?php
                                 }
                             }
@@ -156,14 +212,14 @@ if (isset($_GET['c'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/item?i=<?= $item['name']; ?>"; }, 500);});});</script>
+                                <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
                 <?php
                                 $photo = new Photo;
                                 $photoInsert = $photo->fetch_by_id($item['preview']);
 
                                 if ($photoInsert !== null) {
                 ?>
-                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/photos/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
                 <?php
                                 }
                             }

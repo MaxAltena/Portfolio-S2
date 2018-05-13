@@ -81,13 +81,7 @@ if (isset($_SESSION['ingelogd'])) {
                 clickedClass = "#" + clickedClass.substring(4, 100);
                 
                 if (clickedClass == "#logout") {
-                    $("#all").css({position: "absolute", left: 0})
-                    var width = $("#all").width();
-                    $("#all").animate({left: width}, 500, "easeInOutCubic", function(){
-                        setTimeout(function(){
-                            window.location = "../../logout";
-                        }, 500);
-                    });
+                    window.location = "../../logout";
                 }
                 else {
                     $(clickedClass).click();

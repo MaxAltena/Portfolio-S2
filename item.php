@@ -20,6 +20,7 @@ if (isset($_GET['i'])) {
             
             $getCategory = new Category;
             $currentCategory = $getCategory->fetch_by_item($name);
+            $page = $currentCategory['short'];
             
             function styleText($text) {
                 $boldArray = explode('*', $text);
@@ -65,7 +66,24 @@ if (isset($_GET['i'])) {
                         break;
                     }
                 }
-                return implode($underlineArray);
+                $text = implode($underlineArray);
+                
+                $linkArray = explode('[]', $text);
+                $linkCount = 0;
+                foreach ($linkArray as $string) {
+                    if ($string !== null) {
+                        if ($linkCount % 2 !== 0) {
+                            $linkArray[$linkCount] = "<a class='link' href=".$string." target='_blank'>" . $string . "</a>";
+                        }
+                        $linkCount++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                $text = implode($linkArray);
+                
+                return $text;
             }
 ?>
 <html lang="nl">
@@ -80,10 +98,7 @@ if (isset($_GET['i'])) {
         <?php include_once('includes/menu.php'); ?>
         <main>
             <div id="content">
-                <small class="alert">Op dit moment zijn er nog geen foto's, documenten of media toegevoegd aan de opdrachten</small>
-
                 <h1 id="cat"><?= $currentCategory['name'];?> (<span class="accent"><?= $currentCategory['short'] ?></span>)</h1>
-
                 <h2 id="name"><?= $currentItem['name']; ?></h2>
                 <?php
                     if ($currentItem['description'] !== null) {
@@ -91,10 +106,11 @@ if (isset($_GET['i'])) {
                         <small class="descriptionS"><?= $currentItem['description']; ?></small>
                     <?php
                     }
-
+                    ?>
+                    <?php
                     if ($currentItem['opdracht'] !== null) {
                     ?>
-                        <h3 id="opdrachtH">Opdracht</h3>
+                        <h3>Opdracht</h3>
                     <?php
                         $text = styleText($currentItem['opdracht']);
 
@@ -102,14 +118,14 @@ if (isset($_GET['i'])) {
 
                         foreach ($paragraph as $value) {
                             ?>
-                                <p class="opdrachtP"><?= $value; ?></p>
+                                <p><?= $value; ?></p>
                             <?php
                         }
                     }
-
+                    
                     if ($currentItem['uitvoering'] !== null) {
                     ?>
-                        <h3 id="uitvoeringH">Uitvoering</h3>
+                        <h3>Uitvoering</h3>
                     <?php
                         $text = styleText($currentItem['uitvoering']);
 
@@ -117,11 +133,11 @@ if (isset($_GET['i'])) {
 
                         foreach ($paragraph as $value) {
                             ?>
-                                <p class="uitvoeringP"><?= $value; ?></p>
+                                <p><?= $value; ?></p>
                             <?php
                         }
                     }
-
+                    
                     if ($currentItem['feedback'] !== null) {
                     ?>
                         <h3>Feedback</h3>
@@ -136,7 +152,7 @@ if (isset($_GET['i'])) {
                             <?php
                         }
                     }
-
+                    
                     if ($currentItem['reflectie'] !== null) {
                     ?>
                         <h3>Reflectie</h3>
@@ -152,7 +168,105 @@ if (isset($_GET['i'])) {
                         }
                     }
                 ?>
+                
+                <?php
+                if ($currentItem['media'] !== null) {
+            ?>
+                    <div id="media">
+            <?php
+                        $mediaIDs = explode('|', $currentItem['media']);
+
+                        foreach ($itemIDs as $itemID) {
+                            $query = $PDO->prepare('SELECT id, name, description, preview, sprint FROM items WHERE id = ?');
+                            $query->bindValue(1, $itemID);
+                            $query->execute();
+                            $result = $query->fetchAll();
+            ?>
+                            <div class="itemLink item itemSprint<?= $result[0]['sprint']; ?>" id="itemLink<?= $result[0]['id']; ?>">
+                                <div class="section">
+                                    <div class="firstClass">
+                                        <h1><?= $result[0]['name']; ?></h1>
+                                        <h2><?= $result[0]['description']; ?></h2>
+                                    </div>
+                                    <div>
+                                        <span class="arrowSpan">
+                                            <svg viewBox="0 0 24 24" class="arrow">
+                                                <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>$("#itemLink<?= $result[0]['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $result[0]['name']; ?>";});</script>
+            <?php
+                            $photo = new Photo;
+                            $photoInsert = $photo->fetch_by_id($result[0]['preview']);
+
+                            if ($photoInsert !== null) {
+            ?>
+                                <script>$("#itemLink<?= $result[0]['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+            <?php
+                            }
+                        }
+            ?>
+                        </div>
+                    </div>
+            <?php
+                }
+            ?>
             </div>
+            <?php
+                if ($currentItem['related'] !== null) {
+            ?>
+                    <div id="related">
+                        <div class="relatedHeader "id="relatedHeader<?= $currentItem['name']; ?>">
+                            <h1 id="relatedH1">Verwante opdrachten van <span class="accent"><?= $currentItem['name']; ?></span></h1>
+                            <svg viewBox="0 0 60 15" id="separator">
+                                <polyline class="coolLine" points="5,4.5 11.2,10.5 17.5,4.5 23.7,10.5 30,4.5 36.2,10.5 42.5,4.5 48.8,10.5 55,4.5"/>
+                            </svg>
+                        </div>
+                        <div id="relatedItems">
+            <?php
+                        $itemIDs = explode('|', $currentItem['related']);
+
+                        foreach ($itemIDs as $itemID) {
+                            $query = $PDO->prepare('SELECT id, name, description, preview, sprint FROM items WHERE id = ?');
+                            $query->bindValue(1, $itemID);
+                            $query->execute();
+                            $result = $query->fetchAll();
+            ?>
+                            <div class="itemLink item itemSprint<?= $result[0]['sprint']; ?>" id="itemLink<?= $result[0]['id']; ?>">
+                                <div class="section">
+                                    <div class="firstClass">
+                                        <h1><?= $result[0]['name']; ?></h1>
+                                        <h2><?= $result[0]['description']; ?></h2>
+                                    </div>
+                                    <div>
+                                        <span class="arrowSpan">
+                                            <svg viewBox="0 0 24 24" class="arrow">
+                                                <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>$("#itemLink<?= $result[0]['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $result[0]['name']; ?>";});</script>
+            <?php
+                            $photo = new Photo;
+                            $photoInsert = $photo->fetch_by_id($result[0]['preview']);
+
+                            if ($photoInsert !== null) {
+            ?>
+                                <script>$("#itemLink<?= $result[0]['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+            <?php
+                            }
+                        }
+            ?>
+                        </div>
+                    </div>
+            <?php
+                }
+            ?>
             <div id="bottom">
                 <span id="backtoCat" class="backtoCat">
                     <span class="arrowSpan arrowSpanBTC"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span>
@@ -168,17 +282,12 @@ if (isset($_GET['i'])) {
         <script>
             $(document).ready(function(){
                 $(".backtoCat").on("click", function(){
-                    $("body").css({position: "absolute", left: 0});
-                    var width = $("body").width();
-                    $("body").animate({left: width}, 500, "easeInOutCubic", function(){
-                        setTimeout(function(){
-                            window.location = "/categorie?c=<?= $currentCategory['short']; ?>";
-                        }, 500);
-                    });
+                    window.location = "/categorie?c=<?= $currentCategory['short']; ?>";
                 });
             });
         </script>
         <script src="js/item.js"></script>
+        <?php include_once('includes/menuselect.php'); ?>
     </body>
 </html>
 <?php

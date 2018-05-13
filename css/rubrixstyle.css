@@ -5,6 +5,7 @@ body {
 #rubrixHeader {
     grid-area: title;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -17,12 +18,37 @@ body {
     color: #FECD18;
 }
 
+#separator {
+    width: 100px;
+    margin-top: -5px;
+}
+
+.coolLine {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 3;
+}
+
 #rubrixContent {
     grid-area: content;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.opinionBlock {
+    width: 250px;
+    height: 150px;
+    background: #FFFFFF;
+    border: 2px solid #E9E9E9;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    font-size: 15px;
+}
+
 
 #rubrixTerug {
     grid-area: terug;
@@ -47,8 +73,8 @@ main {
     max-height: 100vh;
     background: #FFFFFF url('../assets/background.png') repeat center;
     display: grid;
-    grid-template-columns: 2.5% 40% 15% 40% 2.5%;
-    grid-template-rows: 2.5% 10% 2.5% 75% 2.5% 5% 2.5%;
+    grid-template-columns: 2.5% 30% auto 30% 2.5%;
+    grid-template-rows: 2.5% 10% 2.5% auto 2.5% 5% 2.5%;
     grid-template-areas: 
         ". . . . ."
         ". title title title ."
@@ -156,9 +182,11 @@ span.arrowSpan.hovered:after {
 td.selected {
     background: #119977;
     border: 3px solid #119977;
+    cursor: pointer;
 }
 
 td.onvoldoende.selected {
     background: #CC0000;
     border: 3px solid #CC0000;
+    cursor: pointer;
 }

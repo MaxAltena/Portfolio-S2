@@ -72,27 +72,12 @@ $(document).ready(function() {
     $(".menu_logo_link").on("click", function(){
         var currentLocation = window.location.href;
         if(currentLocation.includes("?")){
-            $("#menu_banner").css({position: "absolute"});
-            $("body").css({position: "absolute", left: 0});
-            var width = $("body").width();
-            $("body").animate({left: width}, 500, "easeInOutCubic", function(){
-                setTimeout(function(){
-                    window.location = "../";
-                }, 500);
-            });
+            window.location = "../";
         }
     });
     
     $("#homeLink").on("click", function(){
-        $("#menu_banner").css({position: "absolute"});
-        
-        $("body").css({position: "absolute", left: 0});
-        var width = $("body").width();
-        $("body").animate({left: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "../";
-            }, 500);
-        });
+        window.location = "../";
     });
     
     $("#LINKEDIN").on("click", function(){
@@ -108,27 +93,11 @@ $(document).ready(function() {
     });
     
     $("#documentatieLink").on("click", function(){
-        $("#menu_banner").css({position: "absolute"});
-        
-        $("body").css({position: "absolute", right: 0});
-        var width = $("body").width();
-        $("body").animate({right: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "../documentatie/";
-            }, 500);
-        });
+        window.location = "../documentatie/";
     });
     
     $("#adminLink").on("click", function(){
-        $("#menu_banner").css({position: "absolute"});
-        
-        $("body").css({position: "absolute", right: 0});
-        var width = $("body").width();
-        $("body").animate({right: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "/login";
-            }, 500);
-        });
+        window.location = "/login";
     });
     
     $("#searchButton").on("click", function(){
@@ -156,7 +125,7 @@ $(document).ready(function() {
                 var searchResults = JSON.parse(data);
                 var searchTerm = $("#searchBar").val();
                 
-                $("#searchResults").empty();
+                $("#searchResults").empty().css({height: "auto"});
                 $("#searchResult1").css({'padding-left': "0"});
                 $("#searchResults").append("<span class='searchResultEntry' id='searchResult1'></span>");
                 $("#searchResults").append("<span class='searchResultEntry' id='searchResult2'></span>");
@@ -258,8 +227,7 @@ $(document).ready(function() {
                     $("#searchResult5").html(searchResults[8]);
                 }
                 
-                $("#searchResults").append("<script>$('.searchLink').click(function(e){ var link = $(this).attr('href'); e.preventDefault(); $('#menu_banner').css({position: 'absolute'}); $('body').css({position: 'absolute', right: 0});var width = $('body').width();$('body').animate({right: width}, 500, 'easeInOutCubic', function(){setTimeout(function(){window.location = link;}, 500);});});</script>");
-                
+                $("#searchResults").append("<script>$('.searchLink').click(function(e){ var link = $(this).attr('href'); e.preventDefault(); window.location = link;});</script>");
             }
         });
         }
@@ -271,18 +239,8 @@ $(document).ready(function() {
     });
     
     $(".searchLink").click(function(e){
-        alert($(this).attr("href"));
         e.preventDefault();
-        
-        $("#menu_banner").css({position: "absolute"});
-        
-        $("body").css({position: "absolute", right: 0});
-        var width = $("body").width();
-        $("body").animate({right: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = $(this).attr("href");
-            }, 500);
-        });
+        window.location = $(this).attr("href");
     });
     
     $("#menu_banner").hide();

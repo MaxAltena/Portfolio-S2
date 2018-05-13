@@ -60,12 +60,6 @@ $(document).ready(function() {
     });
     
     $(".backtoHome").on("click", function(){
-        $("body").css({position: "absolute", left: 0});
-        var width = $("body").width();
-        $("body").animate({left: width}, 500, "easeInOutCubic", function(){
-            setTimeout(function(){
-                window.location = "../";
-            }, 500);
-        });
+        window.location = "../";
     });
 });
