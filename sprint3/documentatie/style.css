@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: none;
+}
+
+#backButton {
+    position: absolute;
+    top: 0.75vh;
+    left: 0.5vw;
+}
+
+#backButton a,
+#backButton a:link,
+#backButton a:visited {
+    color: #000000;
+    text-decoration: underline;
+}
+
+#backButton a:hover,
+#backButton a:active {
+    text-decoration: line-through;
+}
+
+#mainNAV {
+    width: 100%;
+    height: 3vh;
+    display: flex;
+    padding-top: 4vh;
+    background: #FFFFFF;
+}
+
+.mainMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    background: #FFFFFF;
+    width: calc(100% / 5);
+    height: 100%;
+    cursor: pointer;
+    color: #000000;
+    font-size: 0.9em;
+    transition: 0.5s;
+    border-top-left-radius: 7.5px;
+    border-top-right-radius: 7.5px;
+}
+
+.activeMain {
+    background: #F2F2F2;
+    transition: 0.5s;
+}
+
+#subNAV {
+    width: 100%;
+    height: 3vh;
+    display: flex;
+    padding-top: 1vh;
+    background: #F2F2F2;
+}
+
+.subMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    background: #F2F2F2;
+    width: calc(100% / 5);
+    height: 100%;
+    cursor: pointer;
+    color: #000000;
+    font-size: 0.9em;
+    transition: 0.5s;
+    border-top-left-radius: 7.5px;
+    border-top-right-radius: 7.5px;
+}
+
+.activeSub {
+    background: #E2E2E2;
+    transition: 0.5s;
+}
+
+.mainContent {
+    display: none;
+}
+
+.activeMainContent {
+    display: block;
+}
+
+.subContent {
+    display: none;
+}
+
+.activeSubContent {
+    display: block;
+}
+
+main {
+    height: calc(100% - 15vh);
+    width: 90vw;
+    background: #E2E2E2;
+    overflow: auto;
+    padding: 2vh 5vw;
+}
+
+h1 {
+    font-family: 'Hind', sans-serif;
+    font-size: 2em;
+    padding: 2vh 0;
+}
+
+h2 {
+    font-family: 'Hind', sans-serif;
+    font-size: 1.75em;
+    padding: 1.5vh 0;
+}
+
+h3 {
+    font-family: 'Hind', sans-serif;
+    font-size: 1.5em;
+    padding: 1vh 0;
+}
+
+p {
+    padding: 1vh 0;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-left: 10px;
+}
+
+li:before {
+    background-image: url("../assets/max.png");
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding-right: 5px;
+    content: "";
+}
+
+a,
+a:link,
+a:visited {
+    text-decoration: underline;
+    color: blue;
+}
+
+a:hover,
+a:active {
+    text-decoration: line-through;
+    color: blue;
+}
