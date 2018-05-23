@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/query.php');
 
 if (isset($_GET['r'])) {
     if (!empty($_GET['r'])) {
@@ -24,13 +24,13 @@ if (isset($_GET['r'])) {
 <html lang="nl">
     <head>
         <title>Rubrix <?= $currentCategory['short']; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/rubrixstyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint3/css/rubrixstyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/menu.php'); ?>
         <main>
             <div id="rubrixHeader">
                 <h1>Rubrix voor <?= $currentCategory['name']; ?> (<span class="accent"><?= $currentCategory['short']; ?></span>)</h1>
@@ -66,11 +66,11 @@ if (isset($_GET['r'])) {
             <div id="rubrixTerug">
                 <div class="terug">
                     <span class="arrowSpan arrowSpanRubrix"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <span class="accent"><?= $currentCategory['short']; ?></span></span>
-                    <script>$(".terug").on("click", function(){$("body").css({position: "absolute", left: 0}); var width = $("body").width(); $("body").animate({left: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "categorie?c=<?= $currentCategory['short']; ?>"; }, 500);});});</script>
+                    <script>$(".terug").on("click", function(){$("body").css({position: "absolute", left: 0}); var width = $("body").width(); $("body").animate({left: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/sprint3/categorie?c=<?= $currentCategory['short']; ?>"; }, 500);});});</script>
                 </div>
             </div>
         </main>
-        <script src="js/rubrix.js"></script>
+        <script src="/sprint3/js/rubrix.js"></script>
     </body>
 </html>
 <?php

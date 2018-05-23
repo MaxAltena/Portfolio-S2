@@ -1,7 +1,7 @@
 <?php
 
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/query.php');
 
 if (isset($_GET['i'])) {
     if (!empty($_GET['i'])) {
@@ -24,20 +24,20 @@ if (isset($_GET['i'])) {
 <html lang="nl">
     <head>
         <title><?= $currentItem['name']; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/itemstyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint2/css/itemstyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/menu.php'); ?>
         <main>
             <div id="content">
                 <p><?= $currentItem['name']; ?></p>
                 <p><?= $currentCategory['name']; ?></p>
             </div>
         </main>
-        <script src="js/menu.js"></script>
+        <script src="/sprint2/js/menu.js"></script>
     </body>
 </html>
 <?php

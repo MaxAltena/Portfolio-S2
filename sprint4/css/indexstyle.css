@@ -1,0 +1,166 @@
+#home {
+    width: 60%;
+    padding: 0 20%;
+    min-height: 60vh;
+    background: #FFFFFF url('../assets/background.png') repeat center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#home div {
+    width: 75%;
+    max-height: 100%;
+}
+
+#home div p {
+    width: 90%;
+}
+
+span.accent {
+    color: #FECD18;
+    text-transform: capitalize;
+}
+
+#separator {
+    width: 100px;
+    margin-left: -5px;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.coolLine {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 3;
+}
+
+#profilephoto {
+    width: 35%;
+}
+
+#categories {
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+#categories div.section {
+    height: 100px;
+    width: 60%;
+    padding: 50px 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#categories div.section div {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#categories div.section div:nth-child(2) {
+    align-items: center;
+}
+
+#categories a:hover {
+    color: #000000;
+}
+
+#categories div h1 {
+    font-size: 1.5em;
+    color: #000000;
+}
+
+#categories div h2 {
+    font-size: 0.9em;
+    color: #7D7D7D;
+}
+
+.arrow {
+    width: 24px;
+    height: 24px;
+}
+
+.arrowPath {
+    fill: rgba(0, 0, 0, 0.7);
+}
+
+.categorieLink {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    transition: 0.5s;
+    z-index: 3;
+    background: #202020;
+    background: -webkit-linear-gradient(to left, #434343, #202020);
+    background: linear-gradient(to left, #434343, #202020);
+    background-position: center center;
+    background-size: cover;
+    border-top: 1px solid #E9E9E9;
+}
+
+.categorieLink:before {
+    content: "";
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    transition: 0.5s;
+}
+
+.categorieLink:hover:before {
+    width: 0%;
+}
+
+.categorieLink:hover {
+    cursor: pointer;
+}
+
+span.arrowSpan {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  z-index: 1;
+  text-decoration: none;
+  color: #000000;
+}
+
+span.arrowSpan.hovered {
+  color: #FFFFFF;
+  transition: 0.5s;
+}
+
+span.arrowSpan:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 48px;
+  text-align: center;
+}
+
+span.arrowSpan:after {
+  content: "";
+  color: #000000;
+  width: 48px;
+  height: 48px;
+  background-color: #FECD18;
+  position: absolute;
+  border-radius: 50%;
+  top: -12px;
+  left: -12px;
+  transform: scale(0);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+span.arrowSpan.hovered:after {
+  transform: scale(1);
+}

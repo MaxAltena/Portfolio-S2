@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if (isset($_SESSION['ingelogd'])) {
     if ($_SESSION['rank'] >= 1) {
@@ -22,7 +22,7 @@ if (isset($_SESSION['ingelogd'])) {
     }
 }
 else {
-    header('Location: ../../login');
+    header('Location: /sprint3/login');
     exit();
 }
 ?>

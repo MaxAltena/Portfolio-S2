@@ -1,19 +1,19 @@
 <?php
 session_start();
-include_once('includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if (!isset($_SESSION['ingelogd'])) {
 ?>
 <html lang="nl">
     <head>
         <title>Login | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/loginstyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint3/css/loginstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     </head>
     
     <body>
-        <?php include_once('includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/loader.php'); ?>
         <main>
             <div id="backTo">← terug naar website</div>
             <div id="error"><small id="errorText"></small></div>
@@ -40,7 +40,7 @@ if (!isset($_SESSION['ingelogd'])) {
                 </div>
             </div>
         </main>
-        <script src="js/login.js"></script>
+        <script src="/sprint3/js/login.js"></script>
     </body>
 </html>
 <?php

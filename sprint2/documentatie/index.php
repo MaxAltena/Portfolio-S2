@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Hind:400,700|Open+Sans:400,400i,700" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="/sprint2/documentatie/style.css">
+        <script src="/sprint2/documentatie/script.js"></script>
     </head>
 
     <body>

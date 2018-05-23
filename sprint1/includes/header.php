@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="/css/defaultstyle.css">
-<link rel="stylesheet" type="text/css" href="/css/menustyle.css">
+<link rel="stylesheet" type="text/css" href="/sprint1/css/defaultstyle.css">
+<link rel="stylesheet" type="text/css" href="/sprint1/css/menustyle.css">
 <meta charset="UTF-8">
 <meta name="description" content="Portfoliowebsite van Max Altena">
 <meta name="keywords" content="Portfolio,Max,Altena,Max Altena">

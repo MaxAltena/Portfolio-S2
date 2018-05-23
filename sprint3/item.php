@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/query.php');
 
 if (isset($_GET['i'])) {
     if (!empty($_GET['i'])) {
@@ -71,13 +71,13 @@ if (isset($_GET['i'])) {
 <html lang="nl">
     <head>
         <title><?= $currentItem['name']; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/itemstyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint3/css/itemstyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/menu.php'); ?>
         <main>
             <div id="content">
                 <small class="alert">Op dit moment zijn er nog geen foto's, documenten of media toegevoegd aan de opdrachten</small>
@@ -172,13 +172,13 @@ if (isset($_GET['i'])) {
                     var width = $("body").width();
                     $("body").animate({left: width}, 500, "easeInOutCubic", function(){
                         setTimeout(function(){
-                            window.location = "categorie?c=<?= $currentCategory['short']; ?>";
+                            window.location = "/sprint3/categorie?c=<?= $currentCategory['short']; ?>";
                         }, 500);
                     });
                 });
             });
         </script>
-        <script src="js/item.js"></script>
+        <script src="/sprint3/js/item.js"></script>
     </body>
 </html>
 <?php

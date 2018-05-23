@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/query.php');
 
 if (isset($_GET['c'])) {
     if (!empty($_GET['c'])) {
@@ -25,13 +25,13 @@ if (isset($_GET['c'])) {
 <html lang="nl">
     <head>
         <title><?= $short; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/categoriestyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint3/css/categoriestyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/menu.php'); ?>
         <main>
             <div id="top">
                 <div id="topTitle">
@@ -60,7 +60,7 @@ if (isset($_GET['c'])) {
                             </svg>
                         </span>
                     </div>
-                    <script>$("#rubrixLink").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "rubrix?r=<?= $short; ?>"; }, 500);});});</script>
+                    <script>$("#rubrixLink").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/sprint3/rubrix?r=<?= $short; ?>"; }, 500);});});</script>
                 </div>
                 <?php
                     }
@@ -89,14 +89,14 @@ if (isset($_GET['c'])) {
                                     </div>
                                 </div>
                             </div>
-                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "item?i=<?= $item['name']; ?>"; }, 500);});});</script>
+                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/sprint3/item?i=<?= $item['name']; ?>"; }, 500);});});</script>
                 <?php
                             $photo = new Photo;
                             $photoInsert = $photo->fetch_by_id($item['preview']);
 
                             if ($photoInsert !== null) {
                 ?>
-                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/sprint3/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
                 <?php
                             }
                         }
@@ -119,14 +119,14 @@ if (isset($_GET['c'])) {
                                     </div>
                                 </div>
                             </div>
-                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "item?i=<?= $item['name']; ?>"; }, 500);});});</script>
+                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/sprint3/item?i=<?= $item['name']; ?>"; }, 500);});});</script>
                 <?php
                                 $photo = new Photo;
                                 $photoInsert = $photo->fetch_by_id($item['preview']);
 
                                 if ($photoInsert !== null) {
                 ?>
-                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/sprint3/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
                 <?php
                                 }
                             }
@@ -156,14 +156,14 @@ if (isset($_GET['c'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "item?i=<?= $item['name']; ?>"; }, 500);});});</script>
+                                <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/sprint3/item?i=<?= $item['name']; ?>"; }, 500);});});</script>
                 <?php
                                 $photo = new Photo;
                                 $photoInsert = $photo->fetch_by_id($item['preview']);
 
                                 if ($photoInsert !== null) {
                 ?>
-                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/sprint3/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
                 <?php
                                 }
                             }
@@ -247,8 +247,8 @@ if (isset($_GET['c'])) {
                 </span>
             </div>
         </main>
-        <script src="js/category.js"></script>
-        <?php include_once('includes/menuselect.php'); ?>
+        <script src="/sprint3/js/category.js"></script>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/menuselect.php'); ?>
     </body>
 </html>
 <?php

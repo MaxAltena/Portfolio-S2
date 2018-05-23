@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if (isset($_SESSION['ingelogd'])) {
 ?>
@@ -85,7 +85,7 @@ if (isset($_SESSION['ingelogd'])) {
                     var width = $("#all").width();
                     $("#all").animate({left: width}, 500, "easeInOutCubic", function(){
                         setTimeout(function(){
-                            window.location = "../../logout";
+                            window.location = "/sprint3/logout";
                         }, 500);
                     });
                 }
@@ -99,7 +99,7 @@ if (isset($_SESSION['ingelogd'])) {
 
                 if (YorN == "Y") {
                     alert("Succesfully deleted all data related to <?= $_SESSION['username']; ?>!");
-                    window.location = "../../logout";
+                    window.location = "/sprint3/logout";
                 }
                 else if (YorN == "N") {
                     alert("Okay, thank you.");
@@ -116,7 +116,7 @@ if (isset($_SESSION['ingelogd'])) {
 <?php
 }
 else {
-    header('Location: ../../login');
+    header('Location: /sprint3/login');
     exit();
 }
 ?>

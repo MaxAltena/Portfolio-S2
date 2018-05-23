@@ -1,23 +1,23 @@
 <?php
 session_start();
-include_once('../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if (isset($_SESSION['ingelogd'])) {
 ?>
 <html lang="nl">
     <head>
         <title>Admin panel | Max Altena</title>
-        <?php include_once('../includes/head_admin.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/head_admin.php'); ?>
     </head>
 
     <body>
-        <?php include_once('../includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/loader.php'); ?>
         <div id="all">
             <div id="menu">
                 <div id="back">← terug naar website</div>
                 <div id="menu_box_logo">
                     <div class="menu_logo_link">
-                        <?php include('../assets/logo.svg'); ?>
+                        <?php include($_SERVER['DOCUMENT_ROOT'] . '/sprint3/assets/logo.svg'); ?>
                     </div>
                 </div>
                 <div class="item active" id="dashboard">Dashboard</div>
@@ -49,13 +49,13 @@ if (isset($_SESSION['ingelogd'])) {
                 <div id="content"></div>
             </div>
         </div>
-        <script src="../js/admin.js"></script>
+        <script src="/sprint3/js/admin.js"></script>
     </body>
 </html>
 <?php
 }
 else {
-    header('Location: ../login');
+    header('Location: /sprint3/login');
     exit();
 }
 ?>

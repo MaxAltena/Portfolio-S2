@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if (isset($_SESSION['ingelogd'])) {
 ?>
@@ -52,7 +52,7 @@ if (isset($_SESSION['ingelogd'])) {
                                         setTimeout(function(){
                                             $.ajax({
                                                 type: "POST",
-                                                url: "password",
+                                                url: "/sprint3/admin/password",
                                                 data: {
                                                     password: $("#newPassword1").val()
                                                 },

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
@@ -22,7 +22,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     }
 }
 else {
-    header('Location: ../');
+    header('Location: /sprint3/');
     exit();
 }
 

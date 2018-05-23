@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if (isset($_POST['searchValue'])){
     $search = $_POST['searchValue'];
@@ -44,7 +44,7 @@ else if (isset($_POST['getCategory'])) {
     echo($query->fetchColumn());
 }
 else {
-    header('Location: ../');
+    header('Location: /sprint3/');
     exit();
 }
 

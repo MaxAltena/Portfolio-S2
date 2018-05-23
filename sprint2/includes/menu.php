@@ -1,7 +1,7 @@
 <?php
 
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/query.php');
 
 $category = new Category;
 $categories = $category->fetch();
@@ -11,23 +11,23 @@ $categories = $category->fetch();
     <div id="left_banner">
         <div class="menu_box" id="menu_box_logo">
             <a href="/sprint2/" id="menu_logo_link">
-                <?php include('assets/logo.svg'); ?>
+                <?php include($_SERVER['DOCUMENT_ROOT'] . '/sprint2/assets/logo.svg'); ?>
             </a>
         </div>
         <div class="menu_box">
             <div id="BURGER">
-                <?php include('assets/burger.svg'); ?>
+                <?php include($_SERVER['DOCUMENT_ROOT'] . '/sprint2/assets/burger.svg'); ?>
             </div>
         </div>
         <div class="menu_box" id="menu_box_social">
             <a href="https://www.linkedin.com/in/MaxAltena/" target="_blank" class="social_icon" id="LINKEDIN">
-                <?php include('assets/linkedin.svg'); ?>
+                <?php include($_SERVER['DOCUMENT_ROOT'] . '/sprint2/assets/linkedin.svg'); ?>
             </a>
             <a href="https://www.flickr.com/people/154548504@N07/" target="_blank" class="social_icon" id="FLICKR">
-                <?php include('assets/flickr.svg'); ?>
+                <?php include($_SERVER['DOCUMENT_ROOT'] . '/sprint2/assets/flickr.svg'); ?>
             </a>
             <a href="https://github.com/MaxAltena/" target="_blank" class="social_icon" id="GITHUB">
-                <?php include('assets/github.svg'); ?>
+                <?php include($_SERVER['DOCUMENT_ROOT'] . '/sprint2/assets/github.svg'); ?>
             </a>
         </div>
     </div>
@@ -42,7 +42,7 @@ $categories = $category->fetch();
             </a>
             <?php
             foreach($categories as $category) {
-                echo('<a href="categorie?c='.$category['short'].'" class="menuLink"><div><h1>'.$category['short'].'</h1><h2>'.$category['name'].'</h2></div></a>');
+                echo('<a href="/sprint2/categorie?c='.$category['short'].'" class="menuLink"><div><h1>'.$category['short'].'</h1><h2>'.$category['name'].'</h2></div></a>');
             }
             ?>
         </div>

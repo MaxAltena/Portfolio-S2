@@ -1,7 +1,7 @@
 <?php
 
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint1/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint1/includes/query.php');
 
 $category = new Category;
 $categories = $category->fetch();
@@ -22,19 +22,19 @@ if (isset($_GET['c'])) {
 <html lang="nl">
     <head>
         <title><?= $short; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/categoriestyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint1/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint1/css/categoriestyle.css">
     </head>
 
     <body>
-        <?php include('includes/menu.php'); ?>
-        <?php include_once('includes/loader.php'); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/sprint1/includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint1/includes/loader.php'); ?>
         <main>
             <div id="top">
                 <h1><?= $short; ?></h1>
             </div>
         </main>
-        <?php include_once('includes/menuselect.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint1/includes/menuselect.php'); ?>
     </body>
 </html>
 <?php

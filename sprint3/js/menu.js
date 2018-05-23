@@ -181,7 +181,7 @@ $(document).ready(function() {
                                 },
                                 cache: false,
                                 success: function(data){
-                                    searchResults[index] = "<a href='categorie?c=" + data + "' class='searchLink'>" + boldedText + "</a>";
+                                    searchResults[index] = "<a href='/sprint3/categorie?c=" + data + "' class='searchLink'>" + boldedText + "</a>";
                                 }
                             });
                         }
@@ -192,7 +192,7 @@ $(document).ready(function() {
                                 return "<span class='searchBold'>" + x + "</span>";
                             });
                             
-                            searchResults[index] = "<a href='categorie?c=" + subValue[1] + "' class='searchLink'>" + boldedText + "</a>";
+                            searchResults[index] = "<a href='/sprint3/categorie?c=" + subValue[1] + "' class='searchLink'>" + boldedText + "</a>";
                         }
                         else if (value.substring(0, 3) == "IN:") {
                             var subValue = value.split("IN:");
@@ -201,7 +201,7 @@ $(document).ready(function() {
                                 return "<span class='searchBold'>" + x + "</span>";
                             });
                             
-                            searchResults[index] = "<a href='item?i=" + subValue[1] + "' class='searchLink'>" + boldedText + "</a>";
+                            searchResults[index] = "<a href='/sprint3/item?i=" + subValue[1] + "' class='searchLink'>" + boldedText + "</a>";
                         }
                         index = index + 2;
                     });

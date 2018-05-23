@@ -1,7 +1,7 @@
 <?php
 
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/query.php');
 
 if (isset($_GET['r'])) {
     if (!empty($_GET['r'])) {
@@ -24,13 +24,13 @@ if (isset($_GET['r'])) {
 <html lang="nl">
     <head>
         <title>Rubrix <?= $currentCategory['short']; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/rubrixstyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint2/css/rubrixstyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/menu.php'); ?>
         <main>
             <div>
                 <h1>Rubrix voor <?= $currentCategory['name']; ?></h1>
@@ -60,11 +60,11 @@ if (isset($_GET['r'])) {
             }
         ?>
                 </table>
-                <a href="categorie?c=<?= $currentCategory['short']; ?>" class="terug"><span class="arrowSpan arrowSpanRubrix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <?= $currentCategory['short']; ?></span></a>
+                <a href="/sprint2/categorie?c=<?= $currentCategory['short']; ?>" class="terug"><span class="arrowSpan arrowSpanRubrix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <?= $currentCategory['short']; ?></span></a>
             </div>
         </main>
-        <script src="js/menu.js"></script>
-        <script src="js/rubrix.js"></script>
+        <script src="/sprint2/js/menu.js"></script>
+        <script src="/sprint2/js/rubrix.js"></script>
     </body>
 </html>
 <?php

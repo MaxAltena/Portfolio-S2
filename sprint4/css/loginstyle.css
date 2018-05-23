@@ -1,0 +1,199 @@
+main {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF url('../assets/background.png') repeat center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#backTo {
+    position: absolute;
+    top: 3vh;
+    left: 3vh;
+    padding: 1vh;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 1.75vh;
+    font-weight: 400;
+}
+
+#backTo:hover {
+    text-decoration: line-through;
+}
+
+#error {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 31vh;
+    text-align: center;
+}
+
+#error small#errorText {
+    color: #FF0000;
+    font-size: 1.5vh;
+}
+
+#container {
+    width: 25vw;
+    height: 30vh;
+    background: #202020;
+    box-shadow: 0.2vh 0.2vh 0.6vh #777777;
+}
+
+#switchContainer {
+    width: 25vw;
+    height: 5vh;
+}
+
+#switchContainer *, #switchContainer *:before, #switchContainer *:after {
+    box-sizing: border-box;
+}
+
+#switchContainer input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#switchContainer input[type="checkbox"]:checked ~ label .switchDiv:before {
+    content: attr(data-unchecked);
+    left: 0;
+}
+
+#switchContainer input[type="checkbox"]:checked ~ label .switchDiv:after {
+    content: attr(data-checked);
+}
+
+#switchContainer label {
+    user-select: none;    
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#switchContainer label .switchDiv {
+    position: relative;
+}
+
+#switchContainer label .switchDiv:before {
+    content: attr(data-checked);
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+
+#switchContainer label .switchDiv:after {
+    content: attr(data-unchecked);
+    position: absolute;
+    z-index: 5;
+    text-align: center;
+    background: #202020;
+    color: #DEDEDE;
+    transform: translate3d(0, 0, 0);
+}
+
+#switchContainer input[type="checkbox"]:checked ~ label .switchDiv {
+    background-color: #DEDEDE;
+}
+
+#switchContainer input[type="checkbox"]:checked ~ label .switchDiv:after {
+    color: #DEDEDE;
+}
+
+#switchContainer label .switchDiv {
+    transition: background-color 0.3s cubic-bezier(0, 1, 0.5, 1);
+    background: #DEDEDE;
+}
+
+#switchContainer label .switchDiv:before {
+    color: #202020;
+}
+
+#switchContainer label .switchDiv:after {
+    transition: transform 0.3s cubic-bezier(0, 1, 0.5, 1);
+}
+
+#switchContainer input[type="checkbox"]:checked ~ label .switchDiv:after {
+    transform: translate3d(12.5vw, 0, 0);
+}
+
+#switchContainer label .switchDiv {
+    height: 5vh;
+    flex: 0 0 25vw;
+}
+
+#switchContainer label .switchDiv:before {
+    left: 12.5vw;
+    font-size: calc(5vh / 2.5);
+    line-height: 5vh;
+    width: 12.5vw;
+    padding: 0 calc(5vh / 2.5);
+}
+
+#switchContainer label .switchDiv:after {
+    top: 0;
+    left: 0;
+    width: 12.5vw;
+    line-height: 5vh;
+    font-size: calc(5vh / 2.5);
+    padding-bottom: 1%;
+}
+
+#formContainer {
+  width: 25vw;
+  height: 25vh;
+}
+
+form {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+input[type=text],
+input[type=password],
+input[type=submit] {
+    width: 100% - 3.5vh;
+    height: 6vh;
+    border: none;
+    outline: none;
+    background: none;
+    margin: 0 calc(7vh / 2); 
+    border: 0.1vh solid #DEDEDE;
+}
+
+input[type=text],
+input[type=password] {
+    cursor: text;
+    color: #DEDEDE;
+    font-size: 1.75vh;
+    padding: 0 1vw;
+}
+
+input[type=text]::placeholder,
+input[type=password]::placeholder {
+    color: #9E9E9E;
+}
+
+input[type=submit] {
+    cursor: pointer;
+    font-size: 2vh;
+    color: #DEDEDE;
+    text-decoration: underline;
+}
+
+input[type=submit]:hover,
+input[type=submit]:active {
+    text-decoration: line-through;
+}
+
+.ui-effects-transfer {
+    border: 0.1vh solid #DEDEDE;
+}

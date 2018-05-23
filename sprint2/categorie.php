@@ -1,7 +1,7 @@
 <?php
 
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/query.php');
 
 if (isset($_GET['c'])) {
     if (!empty($_GET['c'])) {
@@ -25,13 +25,13 @@ if (isset($_GET['c'])) {
 <html lang="nl">
     <head>
         <title><?= $short; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/categoriestyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/sprint2/css/categoriestyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/menu.php'); ?>
         <main>
             <div id="top">
                 <h1><?= $currentCategory['name']." (<span class='accent'>".$short."</span>)"; ?></h1>
@@ -48,7 +48,7 @@ if (isset($_GET['c'])) {
                     
                     if ($currentCategory['rubrix'] !== null) {
                 ?>
-                        <a href="rubrix?r=<?= $currentCategory['rubrix']; ?>" id="rubrixLink"><span class="textSpan">Rubrix van <?= $short; ?></span><span class="arrowSpan arrowSpanRubrix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span></a>
+                        <a href="/sprint2/rubrix?r=<?= $currentCategory['rubrix']; ?>" id="rubrixLink"><span class="textSpan">Rubrix van <?= $short; ?></span><span class="arrowSpan arrowSpanRubrix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span></a>
                 <?php
                     }
                 ?>
@@ -61,7 +61,7 @@ if (isset($_GET['c'])) {
                     foreach ($items as $item) {
                         if ($item['sprint'] == null) {
                 ?>
-                            <a href="item?i=<?= $item['id']; ?>" class="itemLink item" id="itemLink<?= $item['id']; ?>">
+                            <a href="/sprint2/item?i=<?= $item['id']; ?>" class="itemLink item" id="itemLink<?= $item['id']; ?>">
                                 <div class="section">
                                     <div class="firstClass">
                                         <h1><?= $item['name']; ?></h1>
@@ -82,7 +82,7 @@ if (isset($_GET['c'])) {
                             
                             if ($photoInsert !== null) {
                 ?>
-                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)"})</script>
+                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/sprint2/assets/media/<?= $photoInsert; ?>)"})</script>
                 <?php
                             }
                         }
@@ -90,7 +90,7 @@ if (isset($_GET['c'])) {
                             $sprints = true;
                             if ($item['sprint'] == $sprintCounter) {
                 ?>
-                            <a href="item?i=<?= $item['id']; ?>" class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
+                            <a href="/sprint2/item?i=<?= $item['id']; ?>" class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
                                 <div class="section">
                                     <div class="firstClass">
                                         <h1><?= $item['name']; ?></h1>
@@ -111,7 +111,7 @@ if (isset($_GET['c'])) {
                                 
                                 if ($photoInsert !== null) {
                 ?>
-                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)"})</script>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/sprint2/assets/media/<?= $photoInsert; ?>)"})</script>
                 <?php
                                 }
                             }
@@ -124,7 +124,7 @@ if (isset($_GET['c'])) {
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 15" id="separator"><polyline class="coolLine" points="5,4.5 11.2,10.5 17.5,4.5 23.7,10.5 30,4.5 36.2,10.5 42.5,4.5 48.8,10.5 55,4.5"/></svg>
                                 </div>
                            
-                                <a href="item?i=<?= $item['id']; ?>" class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
+                                <a href="/sprint2/item?i=<?= $item['id']; ?>" class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
                                     <div class="section">
                                         <div class="firstClass">
                                             <h1><?= $item['name']; ?></h1>
@@ -145,7 +145,7 @@ if (isset($_GET['c'])) {
                                 
                                 if ($photoInsert !== null) {
                 ?>
-                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)"})</script>
+                                    <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/sprint2/assets/media/<?= $photoInsert; ?>)"})</script>
                 <?php
                                 }
                             }
@@ -229,9 +229,9 @@ if (isset($_GET['c'])) {
                 </span>
             </div>
         </main>
-        <script src="js/category.js"></script>
-        <script src="js/menu.js"></script>
-        <?php include_once('includes/menuselect.php'); ?>
+        <script src="/sprint2/js/category.js"></script>
+        <script src="/sprint2/js/menu.js"></script>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint2/includes/menuselect.php'); ?>
     </body>
 </html>
 <?php

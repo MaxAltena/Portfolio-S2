@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/sprint3/includes/connection.php');
 
 if(isset($_SESSION['getUsername'])) {
     $username = $_SESSION['getUsername'];
@@ -18,11 +18,11 @@ if(isset($_SESSION['getUsername'])) {
     $_SESSION['ingelogd'] = true;
     unset($_SESSION['getUsername']);
     
-    header('Location: ../admin/');
+    header('Location: /sprint3/admin/');
     exit();
 }
 else {
-    header('Location: ../');
+    header('Location: /sprint3/');
     exit();
 }
 ?>
