@@ -8,18 +8,6 @@ $(document).ready(function() {
         }
     });
     
-    $("#back").on("click", function(){
-        window.location = "../";
-    });
-    
-    $(".menu_logo_link").on("click", function(){
-        window.location = "../";
-    });
-    
-    $("#logout").on("click", function(){
-        window.location = "../logout";
-    });
-    
     var clicked = false;
     $(".item").on("click", function(){
         if (clicked === false) {
@@ -45,6 +33,4 @@ $(document).ready(function() {
             }, 1000);
         }
     });
-    
-    $("#content").load("/admin/pages/dashboard");
 });

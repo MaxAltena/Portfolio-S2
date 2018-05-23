@@ -1,21 +1,21 @@
 <?php
 session_start();
-include_once('includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
 if (!isset($_SESSION['ingelogd'])) {
 ?>
 <html lang="nl">
     <head>
         <title>Login | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/loginstyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/css/loginstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     </head>
     
     <body>
-        <?php include_once('includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/loader.php'); ?>
         <main>
-            <div id="backTo">← terug naar website</div>
+            <a href="../" id="backTo">← terug naar website</a>
             <div id="error"><small id="errorText"></small></div>
             <div id="container">
                 <div id="switchContainer">
@@ -40,7 +40,7 @@ if (!isset($_SESSION['ingelogd'])) {
                 </div>
             </div>
         </main>
-        <script src="js/login.js"></script>
+        <script src="/js/login.js"></script>
     </body>
 </html>
 <?php

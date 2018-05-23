@@ -8,9 +8,10 @@ $(document).ready(function() {
         }
     });
     
-    $(".social_icon").on({
+    $(".social_icon_a").on({
         mouseenter: function(){
-            switch(this.id) {
+            var element = $(this).find(".social_icon")[0];
+            switch(element.id) {
                 case "LINKEDIN":
                     $("#theLINKEDIN").css({fill: "#FECD18", transition: "0.2s"});
                     break;
@@ -23,7 +24,8 @@ $(document).ready(function() {
             }
         },
         mouseleave: function(){
-            switch(this.id) {
+            var element = $(this).find(".social_icon")[0];
+            switch(element.id) {
                 case "LINKEDIN":
                     $("#theLINKEDIN").css({fill: "#000000", transition: "0.2s"});
                     break;
@@ -69,35 +71,12 @@ $(document).ready(function() {
         }
     });
     
-    $(".menu_logo_link").on("click", function(){
+    $(".menu_logo_link").on("click", function(e){
         var currentLocation = window.location.href;
-        if(currentLocation.includes("?")){
-            window.location = "../";
+        if(currentLocation.includes("?") == false){
+            e.preventDefault();
+            $("html, body").animate({scrollTop: 0}, 750);
         }
-    });
-    
-    $("#homeLink").on("click", function(){
-        window.location = "../";
-    });
-    
-    $("#LINKEDIN").on("click", function(){
-        window.location = "https://www.linkedin.com/in/MaxAltena/";
-    });
-    
-    $("#FLICKR").on("click", function(){
-        window.location = "https://www.flickr.com/people/154548504@N07/";
-    });
-    
-    $("#GITHUB").on("click", function(){
-        window.location = "https://github.com/MaxAltena/";
-    });
-    
-    $("#documentatieLink").on("click", function(){
-        window.location = "../documentatie/";
-    });
-    
-    $("#adminLink").on("click", function(){
-        window.location = "/login";
     });
     
     $("#searchButton").on("click", function(){
@@ -116,7 +95,7 @@ $(document).ready(function() {
         if ($("#searchBar").val() !== ""){
             $.ajax({
             type: "POST",
-            url: "../includes/search",
+            url: "/includes/search",
             data: {
                 searchValue: $("#searchBar").val()
             },
@@ -143,7 +122,7 @@ $(document).ready(function() {
                             
                             $.ajax({
                                 type: "POST",
-                                url: "../includes/search",
+                                url: "/includes/search",
                                 async: false,
                                 data: {
                                     getCategory: subValue[1]
@@ -226,8 +205,6 @@ $(document).ready(function() {
                     $("#searchResult4").html(searchResults[6]);
                     $("#searchResult5").html(searchResults[8]);
                 }
-                
-                $("#searchResults").append("<script>$('.searchLink').click(function(e){ var link = $(this).attr('href'); e.preventDefault(); window.location = link;});</script>");
             }
         });
         }
@@ -236,11 +213,6 @@ $(document).ready(function() {
         }
         
         return false;
-    });
-    
-    $(".searchLink").click(function(e){
-        e.preventDefault();
-        window.location = $(this).attr("href");
     });
     
     $("#menu_banner").hide();

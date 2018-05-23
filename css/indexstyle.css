@@ -91,9 +91,10 @@ span.accent {
 .categorieLink {
     display: inline-block;
     position: relative;
+    width: 100%;
     transition: 0.5s;
     z-index: 3;
-    background: #000000;
+    background: #202020;
     background: -webkit-linear-gradient(to left, #434343, #202020);
     background: linear-gradient(to left, #434343, #202020);
     background-position: center center;

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
 if (isset($_SESSION['ingelogd'])) {
 ?>
@@ -81,7 +81,7 @@ if (isset($_SESSION['ingelogd'])) {
                 clickedClass = "#" + clickedClass.substring(4, 100);
                 
                 if (clickedClass == "#logout") {
-                    window.location = "../../logout";
+                    window.location = "/logout";
                 }
                 else {
                     $(clickedClass).click();
@@ -93,7 +93,7 @@ if (isset($_SESSION['ingelogd'])) {
 
                 if (YorN == "Y") {
                     alert("Succesfully deleted all data related to <?= $_SESSION['username']; ?>!");
-                    window.location = "../../logout";
+                    window.location = "/logout";
                 }
                 else if (YorN == "N") {
                     alert("Okay, thank you.");
@@ -110,7 +110,7 @@ if (isset($_SESSION['ingelogd'])) {
 <?php
 }
 else {
-    header('Location: ../../login');
+    header('Location: /login');
     exit();
 }
 ?>

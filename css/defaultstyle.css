@@ -47,3 +47,14 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-corner {
     background: #202020;
 }
+
+a.aLink {
+    display: inline-block;
+    width: 100%;
+}
+
+a.bLink {
+    display: inline-block;
+    width: 45%;
+    padding-left: 5%;
+}

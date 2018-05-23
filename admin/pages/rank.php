@@ -1,12 +1,20 @@
 <?php
 session_start();
-include_once('../../includes/connection.php');
-include_once('../../includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
 if (isset($_SESSION['ingelogd'])) {
     if ($_SESSION['rank'] == 2) {
-        $user = new User;
-        $users = $user->fetch_ranks();
+        if (isset($_POST['value'], $_POST['id'])){
+            $query = $PDO->prepare('UPDATE users SET rank = ? WHERE id = ?');
+            $query->bindValue(1, $_POST['value']);
+            $query->bindValue(2, $_POST['id']);
+            $query->execute();
+            echo($query->rowCount() ? true : false);
+        }
+        else {
+            $query = $PDO->prepare('SELECT * FROM users WHERE rank != 2');
+            $query->execute();
+            $users = $query->fetchAll();
 ?>
 <main>
     <div class="gridHeader">
@@ -95,10 +103,10 @@ if (isset($_SESSION['ingelogd'])) {
                             </select>
                         </td>
                         <td>
-                            <button id="button<?= $user['id']; ?>" name="button<?= $user['id']; ?>">Verander</button>
+                            <button id="button<?= $user['id']; ?>" name="button<?= $user['id']; ?>" class="rankButton">Verander</button>
                         </td>
                         <td>
-                            <p class="errorText error<?= $user['id']; ?>"></p>
+                            <p class="rankErrorText error<?= $user['id']; ?>"></p>
                         </td>
                         
                         <script>
@@ -107,7 +115,7 @@ if (isset($_SESSION['ingelogd'])) {
                                     var newRank = $("#select<?= $user['id']; ?>").find(":selected").val();
                                     $.ajax({
                                         type: "POST",
-                                        url: "rankchange",
+                                        url: "/admin/pages/rank",
                                         data: {
                                             value: newRank,
                                             id: "<?= $user['id']; ?>"
@@ -147,6 +155,7 @@ if (isset($_SESSION['ingelogd'])) {
     </div>
 </main>
 <?php
+        }
     }
     else {
         ?>
@@ -155,7 +164,7 @@ if (isset($_SESSION['ingelogd'])) {
     }
 }
 else {
-    header('Location: ../../login');
+    header('Location: /login');
     exit();
 }
 ?>

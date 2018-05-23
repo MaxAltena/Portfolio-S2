@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
 if (isset($_POST['searchValue'])){
     $search = $_POST['searchValue'];

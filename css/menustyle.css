@@ -160,6 +160,7 @@
 #documentatieLink {
     text-decoration: underline;
     cursor: pointer;
+    font-weight: 400;
 }
 
 #adminLink:hover,
@@ -264,7 +265,7 @@
 	text-decoration: line-through;
 }
 
-.searchResultEntry:nth-last-child(2) {
+.searchResultEntry:nth-last-child(1) {
 	border: none;
 }
 

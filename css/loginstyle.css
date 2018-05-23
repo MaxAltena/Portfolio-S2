@@ -17,6 +17,7 @@ main {
     cursor: pointer;
     text-decoration: underline;
     font-size: 1.75vh;
+    font-weight: 400;
 }
 
 #backTo:hover {

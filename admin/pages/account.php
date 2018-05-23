@@ -1,8 +1,28 @@
 <?php
 session_start();
-include_once('../../includes/connection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
 if (isset($_SESSION['ingelogd'])) {
+    if (isset($_POST['password'])) {
+        $_SESSION['password_noMD5'] = $_POST['password'];
+        $password = md5($_POST['password']);
+        $_SESSION['password_MD5'] = $password;
+
+        $query = $PDO->prepare("UPDATE users SET password = ? WHERE id = ?");
+        $query->bindValue(1, $password);
+        $query->bindValue(2, $_SESSION['user_id']);
+        $query->execute();
+        $result = $query->rowCount() ? true : false;
+
+        if ($result == true) {
+            session_destroy();
+            echo('success');
+        }
+        else {
+            echo('Er ging iets fout');
+        }
+    }
+    else {
 ?>
 <main>
     <div class="gridHeader">
@@ -52,14 +72,14 @@ if (isset($_SESSION['ingelogd'])) {
                                         setTimeout(function(){
                                             $.ajax({
                                                 type: "POST",
-                                                url: "password",
+                                                url: "/admin/pages/account",
                                                 data: {
                                                     password: $("#newPassword1").val()
                                                 },
                                                 cache: false,
                                                 success: function(result){
                                                     if (result === "success"){
-                                                        window.location = "../../login";
+                                                        window.location = "/login";
                                                     }
                                                     else {
                                                         $(".accountPasswordContentERROR").fadeIn(300).text(result);
@@ -105,9 +125,10 @@ if (isset($_SESSION['ingelogd'])) {
     </div>
 </main>
 <?php
+    }
 }
 else {
-    header('Location: ../../login');
+    header('Location: /login');
     exit();
 }
 ?>

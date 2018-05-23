@@ -58,8 +58,4 @@ $(document).ready(function() {
     $(".backtoTop").on("click", function(){
         $("html, body").animate({scrollTop: 0}, 750);
     });
-    
-    $(".backtoHome").on("click", function(){
-        window.location = "../";
-    });
 });

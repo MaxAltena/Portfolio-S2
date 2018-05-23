@@ -54,7 +54,7 @@ main {
 #rubrixLink {
     font-weight: 800;
     height: 50px;
-    width: 60%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,11 +141,12 @@ main {
 .itemLink {
     display: inline-block;
     position: relative;
+    width: 100%;
     transition: 0.5s;
     z-index: 3;
-    background: #000000;
-    background: -webkit-linear-gradient(to left, #434343, #000000);
-    background: linear-gradient(to left, #434343, #000000);
+    background: #202020;
+    background: -webkit-linear-gradient(to left, #434343, #202020);
+    background: linear-gradient(to left, #434343, #202020);
     background-position: center center;
     background-size: cover;
     border-top: 1px solid #E9E9E9;
@@ -332,8 +333,6 @@ span.arrowSpan.hovered:after {
 }
 
 #backtoHome {
-    width: 45%;
-    padding-left: 5%;
     height: 25vh;
     display: flex;
     align-items: center;

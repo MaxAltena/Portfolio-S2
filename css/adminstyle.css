@@ -32,8 +32,9 @@
     cursor: pointer;
     text-decoration: underline;
     text-align: center;
-    margin: 0 12.5%;
-    width: 75%;
+    margin: 0 15%;
+    width: 70%;
+    font-weight: 400;
 }
 
 #back:hover {
@@ -83,6 +84,7 @@
     left: 2vh;
     text-decoration: underline;
     cursor: pointer;
+    font-weight: 400;
 }
 
 #logout:hover {
@@ -99,6 +101,11 @@
     cursor: pointer;
     transition: color 0.5s;
     transition: background 0.5s;
+    text-decoration: underline;
+}
+
+#menu .item:hover {
+    text-decoration: line-through;
 }
 
 #menu .item.active {
@@ -140,6 +147,7 @@ main .gridContent {
 }
 
 main {
+    overflow: hidden;
     padding: 0;
     margin: 0;
     width: 100%;
@@ -351,6 +359,7 @@ p.headerDashboardP {
     grid-area: F1;
     background: none;
     border: 0.1vh solid #DEDEDE;
+    border-radius: 5px;
     outline: none;
     padding: 0 0.5vw;
     cursor: text;
@@ -366,6 +375,7 @@ p.headerDashboardP {
     grid-area: F2;
     background: none;
     border: 0.1vh solid #DEDEDE;
+    border-radius: 5px;
     outline: none;
     padding: 0 0.5vw;
     cursor: text;
@@ -379,8 +389,10 @@ p.headerDashboardP {
 
 .accountPasswordContentF3 {
     grid-area: F3;
-    background: none;
+    background: #FFFFFF;
+    transition: background 0.5s;
     border: 0.1vh solid #DEDEDE;
+    border-radius: 5px;
     outline: none;
     padding: 1%;
     cursor: pointer;
@@ -391,6 +403,7 @@ p.headerDashboardP {
 }
 
 .accountPasswordContentF3:hover {
+    background: #E9E9E9;
     text-decoration: line-through;
 }
 
@@ -464,6 +477,1043 @@ p.headerDashboardP {
     border: 0.1vh solid #DEDEDE;
 }
 
+.listContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+    position: relative;
+}
+
+.filterList {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.filterPlist {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filterPlist span {
+    margin-right: 10px;
+}
+
+.filterOptionCategory,
+.filterOptionSpotlight,
+.filterOptionSprint {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filterOptionCategory:hover,
+.filterOptionSpotlight:hover,
+.filterOptionSprint:hover {
+    text-decoration: line-through;
+}
+
+.activeFilterCategory,
+.activeFilterSpotlight,
+.activeFilterSprint {
+    font-weight: 800;
+}
+
+#theader {
+    width: 100%;
+    height: auto;
+}
+
+#theader div {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-weight: 800;
+}
+
+#tbody {
+    height: 62.5%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+#tbody::-webkit-scrollbar {
+    width: 10px;
+}
+
+#tbody::-webkit-scrollbar-track {
+    background: #FFFFFF; 
+}
+
+#tbody::-webkit-scrollbar-thumb {
+    background: #FECD18; 
+}
+
+#tbody::-webkit-scrollbar-corner {
+    background: #FFFFFF;
+}
+
+.listTable {
+    width: 100%;
+}
+
+.listTable tbody tr td {
+    text-align: left;
+}
+
+.listTable tbody tr td:nth-child(1) {
+    width: 25%;
+}
+
+.listTable tbody tr td:nth-child(2) {
+    width: 35%;
+}
+
+.listTable tbody tr td:nth-child(3),
+.listTable tbody tr td:nth-child(4),
+.listTable tbody tr td:nth-child(5),
+.listTable tbody tr td:nth-child(6) {
+    width: 10%;
+}
+
+.listTable tbody tr td:nth-child(6) {
+    text-align: center;
+}
+
+.trAll {
+    height: 35px;
+}
+
+button.listButton {
+    cursor: pointer;
+    text-decoration: underline;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    outline: none;
+    padding: 2%;
+}
+
+button.listButton:hover {
+    background: #E9E9E9;
+    text-decoration: line-through;
+}
+
+#editMe {
+    width: 400px;
+    height: 250px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 4px solid #DEDEDE;
+    border-radius: 10px;
+    position: absolute;
+    top: calc(50% - 135px);
+    left: calc(50% - 210px);
+    box-shadow: 2px 2px 15px #000000;
+    z-index: 5;
+}
+
+#editMe #exitIcon {
+    width: 20px;
+    height 20px;
+    padding: 5px;
+    margin: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+#editMe form {
+    padding: 30px 30px 0 20px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: repeat(5, auto 15px) auto;
+    grid-template-areas: 
+        "grid1 grid7"
+        ". ."
+        "grid2 grid8"
+        ". ."
+        "grid3 grid9"
+        ". ."
+        "grid4 grid10"
+        ". ."
+        "grid5 grid11"
+        ". ."
+        ". grid6";
+}
+
+#editMe form div:nth-child(1) {
+    grid-area: grid1;
+}
+#editMe form div:nth-child(2) {
+    grid-area: grid2;
+}
+#editMe form div:nth-child(3) {
+    grid-area: grid3;
+}
+#editMe form div:nth-child(4) {
+    grid-area: grid4;
+}
+#editMe form div:nth-child(5) {
+    grid-area: grid5;
+}
+#editMe form #submit {
+    grid-area: grid6;
+    cursor: pointer;
+    text-decoration: underline;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    outline: none;
+    padding: 2%;
+}
+#editMe form #submit:hover {
+    background: #E9E9E9;
+    text-decoration: line-through;
+}
+#editMe form #myName {
+    grid-area: grid7;
+}
+#editMe form #myDescription {
+    grid-area: grid8;
+}
+#editMe form #mySpotlight {
+    grid-area: grid9;
+}
+#editMe form #mySprint {
+    grid-area: grid10;
+}
+#editMe form #myCategory {
+    grid-area: grid11;
+}
+
+.addContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+    position: relative;
+}
+
+.wijzigenContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+    position: relative;
+}
+
+.submit {
+    cursor: pointer;
+    text-decoration: underline;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    outline: none;
+    padding: 0.5%;
+}
+
+.submit:hover {
+    background: #E9E9E9;
+    text-decoration: line-through;
+}
+
+#formHeader {
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+#editorForm {
+    overflow-y: auto;
+    height: 62.5%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: repeat(2, 25px) repeat(4, 150px) repeat(3, 25px) repeat(2, 400px 25px) 25px 1px;
+    grid-template-areas: 
+        "naamT naamE ."
+        "descriptionT descriptionE ."
+        "opdrachtT opdrachtE styleInfo"
+        "uitvoeringT uitvoeringE styleInfo"
+        "feedbackT feedbackE styleInfo"
+        "reflectieT reflectieE styleInfo"
+        "sprintT sprintE ."
+        "categoryT categoryE ."
+        "spotlightT spotlightE ."
+        "relatedT relatedE ."
+        "previewT previewE ."
+        "mediaT mediaE ."
+        "documentT documentE ."
+        "videoT videoE ."
+        ". . .";
+}
+
+#editorForm::-webkit-scrollbar {
+    width: 10px;
+}
+
+#editorForm::-webkit-scrollbar-track {
+    background: #FFFFFF; 
+}
+
+#editorForm::-webkit-scrollbar-thumb {
+    background: #FECD18; 
+}
+
+#editorForm::-webkit-scrollbar-corner {
+    background: #FFFFFF;
+}
+
+#editorForm #naamT {
+    grid-area: naamT;
+}
+#editorForm #naamE {
+    grid-area: naamE;
+}
+#editorForm #descriptionT {
+    grid-area: descriptionT;
+}
+#editorForm #descriptionE {
+    grid-area: descriptionE;
+}
+#editorForm #opdrachtT {
+    grid-area: opdrachtT;
+}
+#editorForm #opdrachtE {
+    grid-area: opdrachtE;
+}
+#editorForm #uitvoeringT {
+    grid-area: uitvoeringT;
+}
+#editorForm #uitvoeringE {
+    grid-area: uitvoeringE;
+}
+#editorForm #feedbackT {
+    grid-area: feedbackT;
+}
+#editorForm #feedbackE {
+    grid-area: feedbackE;
+}
+#editorForm #reflectieT {
+    grid-area: reflectieT;
+}
+#editorForm #reflectieE {
+    grid-area: reflectieE;
+}
+#editorForm #sprintT {
+    grid-area: sprintT;
+}
+#editorForm #sprintE {
+    grid-area: sprintE;
+}
+#editorForm #categoryT {
+    grid-area: categoryT;
+}
+#editorForm #categoryE {
+    grid-area: categoryE;
+}
+#editorForm #spotlightT {
+    grid-area: spotlightT;
+}
+#editorForm #spotlightE {
+    grid-area: spotlightE;
+}
+#editorForm #relatedT {
+    grid-area: relatedT;
+}
+#editorForm #ms-relatedE {
+    grid-area: relatedE;
+}
+#editorForm #previewT {
+    grid-area: previewT;
+}
+#editorForm #previewE {
+    grid-area: previewE;
+}
+#editorForm #mediaT {
+    grid-area: mediaT;
+}
+#editorForm #ms-mediaE {
+    grid-area: mediaE
+}
+#editorForm #documentT {
+    grid-area: documentT;
+}
+#editorForm #documentE {
+    grid-area: documentE;
+}
+#editorForm #videoT {
+    grid-area: videoT;
+}
+#editorForm #videoE {
+    grid-area: videoE;
+}
+#editorForm #submitE {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 20%;
+}
+
+#editorForm div.aTag {
+    display: flex;
+    align-items: center;
+}
+
+#editorForm textarea {
+    resize: none;
+}
+
+#editorForm .styleInfo {
+    width: calc(90% - 12px);
+    margin: 0 5%;
+    padding: 0 5px;
+    grid-area: styleInfo;
+    font-size: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#editorForm .styleInfo > div,
+#editorForm .styleInfo .uitleg {
+    padding: 7px;
+}
+
+#editorForm .styleInfo p.uitleg {
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+#editorForm .styleInfo div p:first-child {
+    padding-bottom: 5px;
+}
+
+#editorForm .styleInfo span.bold {
+    font-weight: 800;
+}
+
+#editorForm .styleInfo span.italic {
+    font-style: italic;
+}
+
+#editorForm .styleInfo span.underline {
+    text-decoration: underline;
+}
+
+#editorForm .styleInfo a.link {
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+#editorForm .styleInfo a.link:hover {
+    text-decoration: line-through;
+}
+
+.styleInfo div p:nth-child(1){
+    font-size: 16px;
+    font-weight: 800;
+}
+.styleInfo div p:nth-child(2){
+    font-size: 14px;
+    padding-bottom: 4px;
+}
+.styleInfo div p:nth-child(3){
+    font-size: 12px;
+}
+.styleInfo div p:nth-child(4){
+    font-size: 14px;
+    padding-bottom: 3px;
+}
+.styleInfo div p:nth-child(5){
+    font-size: 12px;
+}
+.styleInfo div p:nth-child(6){
+    font-size: 14px;
+    padding-bottom: 2px;
+}
+.styleInfo div p:nth-child(7){
+    font-size: 14px;
+}
+
+.wijzigenBack {
+    position: absolute;
+    top: 2.5vh;
+    left: 2.5vh;
+    padding: 0.5%;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.wijzigenBack:hover {
+    text-decoration: line-through;
+}
+
+.deleteContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+    position: relative;
+}
+
+.mediaContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+    position: relative;
+}
+
+.mediaBack {
+    position: absolute;
+    top: 2.5vh;
+    left: 2.5vh;
+    padding: 0.5%;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.mediaBack:hover {
+    text-decoration: line-through;
+}
+
+.mediaHeader {
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+.mediaChoicesWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.mediaChoices {
+    width: auto;
+    height: auto;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    padding: 2.5%;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+}
+
+.mediaChoices:hover {
+    background: #E9E9E9;
+}
+
+.mediaAddWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addForm {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input#upload {
+    cursor: pointer;
+    text-decoration: underline;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    outline: none;
+    padding: 2%;
+    margin-left: 5%;
+}
+
+input#upload:hover {
+    background: #E9E9E9;
+    text-decoration: line-through;
+}
+
+.mediaRemoveWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#removeForm {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input#deload {
+    cursor: pointer;
+    text-decoration: underline;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    outline: none;
+    padding: 2%;
+    margin-left: 5%;
+}
+
+input#deload:hover {
+    background: #E9E9E9;
+    text-decoration: line-through;
+}
+
+.rubrixContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+    position: relative;
+}
+
+.rubrixBack {
+    position: absolute;
+    top: 2.5vh;
+    left: 2.5vh;
+    padding: 0.5%;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.rubrixBack:hover {
+    text-decoration: line-through;
+}
+
+.rubrixHeader {
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+.rubrixChoicesWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.rubrixChoices {
+    width: auto;
+    height: auto;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    padding: 2.5%;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+}
+
+.rubrixChoices:hover {
+    background: #E9E9E9;
+}
+
+#addRubrixForm {
+    height: 60%;
+    overflow-y: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 25px repeat(5, 150px) 25px 150px 1px;
+    grid-template-areas: 
+        "naamRT naamRE"
+        "criteriumRT criteriumRE"
+        "zeerRT zeerRE"
+        "goedRT goedRE"
+        "voldoendeRT voldoendeRE"
+        "onvoldoendeRT onvoldoendeRE"
+        "valueRT valueRE"
+        "opinionRT opinionRE"
+        ". .";
+}
+
+#addRubrixForm::-webkit-scrollbar {
+    width: 10px;
+}
+
+#addRubrixForm::-webkit-scrollbar-track {
+    background: #FFFFFF; 
+}
+
+#addRubrixForm::-webkit-scrollbar-thumb {
+    background: #FECD18; 
+}
+
+#addRubrixForm::-webkit-scrollbar-corner {
+    background: #FFFFFF;
+}
+
+#addRubrixForm *:not(#submitR) {
+    width: 100%;
+    height: 100%;
+}
+
+#addRubrixForm #submitR {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 20%;
+}
+
+#addRubrixForm div.aTag {
+    display: flex;
+    align-items: center;
+}
+
+#addRubrixForm #nameRT {
+    grid-area: naamRT;
+}
+#addRubrixForm #nameRE {
+    grid-area: naamRE;
+}
+#addRubrixForm #criteriumRT {
+    grid-area: criteriumRT;
+}
+#addRubrixForm #criteriumRE {
+    grid-area: criteriumRE;
+    resize: none;
+}
+#addRubrixForm #zeerRT {
+    grid-area: zeerRT;
+}
+#addRubrixForm #zeerRE {
+    grid-area: zeerRE;
+    resize: none;
+}
+#addRubrixForm #goedRT {
+    grid-area: goedRT;
+}
+#addRubrixForm #goedRE {
+    grid-area: goedRE;
+    resize: none;
+}
+#addRubrixForm #voldoendeRT {
+    grid-area: voldoendeRT;
+}
+#addRubrixForm #voldoendeRE {
+    grid-area: voldoendeRE;
+    resize: none;
+}
+#addRubrixForm #onvoldoendeRT {
+    grid-area: onvoldoendeRT;
+}
+#addRubrixForm #onvoldoendeRE {
+    grid-area: onvoldoendeRE;
+    resize: none;
+}
+#addRubrixForm #valueRT {
+	grid-area: valueRT;
+}
+#addRubrixForm #valueRE {
+    grid-area: valueRE;
+}
+#addRubrixForm #opinionRT {
+    grid-area: opinionRT;
+}
+#addRubrixForm #opinionRE {
+    grid-area: opinionRE;
+    resize: none;
+}
+
+#editRubrixForm {
+    height: 60%;
+    overflow-y: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 25px repeat(5, 150px) 25px 150px 1px;
+    grid-template-areas: 
+        "naamRT naamRE"
+        "criteriumRT criteriumRE"
+        "zeerRT zeerRE"
+        "goedRT goedRE"
+        "voldoendeRT voldoendeRE"
+        "onvoldoendeRT onvoldoendeRE"
+        "valueRT valueRE"
+        "opinionRT opinionRE"
+        ". .";
+}
+
+#editRubrixForm::-webkit-scrollbar {
+    width: 10px;
+}
+
+#editRubrixForm::-webkit-scrollbar-track {
+    background: #FFFFFF; 
+}
+
+#editRubrixForm::-webkit-scrollbar-thumb {
+    background: #FECD18; 
+}
+
+#editRubrixForm::-webkit-scrollbar-corner {
+    background: #FFFFFF;
+}
+
+#editRubrixForm *:not(#submitER) {
+    width: 100%;
+    height: 100%;
+}
+
+#editRubrixForm #submitER {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 20%;
+}
+
+#editRubrixForm div.aTag {
+    display: flex;
+    align-items: center;
+}
+
+#editRubrixForm #nameERT {
+    grid-area: naamRT;
+}
+#editRubrixForm #nameERE {
+    grid-area: naamRE;
+}
+#editRubrixForm #criteriumERT {
+    grid-area: criteriumRT;
+}
+#editRubrixForm #criteriumERE {
+    grid-area: criteriumRE;
+    resize: none;
+}
+#editRubrixForm #zeerERT {
+    grid-area: zeerRT;
+}
+#editRubrixForm #zeerERE {
+    grid-area: zeerRE;
+    resize: none;
+}
+#editRubrixForm #goedERT {
+    grid-area: goedRT;
+}
+#editRubrixForm #goedERE {
+    grid-area: goedRE;
+    resize: none;
+}
+#editRubrixForm #voldoendeERT {
+    grid-area: voldoendeRT;
+}
+#editRubrixForm #voldoendeERE {
+    grid-area: voldoendeRE;
+    resize: none;
+}
+#editRubrixForm #onvoldoendeERT {
+    grid-area: onvoldoendeRT;
+}
+#editRubrixForm #onvoldoendeERE {
+    grid-area: onvoldoendeRE;
+    resize: none;
+}
+#editRubrixForm #valueERT {
+	grid-area: valueRT;
+}
+#editRubrixForm #valueERE {
+    grid-area: valueRE;
+}
+#editRubrixForm #opinionERT {
+    grid-area: opinionRT;
+}
+#editRubrixForm #opinionERE {
+    grid-area: opinionRE;
+    resize: none;
+}
+
+.categorieContent {
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-shadow: 2px 2px 6px #DEDEDE;
+    padding: 2%;
+    position: relative;
+}
+
+.categorieBack {
+    position: absolute;
+    top: 2.5vh;
+    left: 2.5vh;
+    padding: 0.5%;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.categorieBack:hover {
+    text-decoration: line-through;
+}
+
+.categorieHeader {
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+.categorieChoicesWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.categorieChoices {
+    width: auto;
+    height: auto;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    padding: 2.5%;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+}
+
+.categorieChoices:hover {
+    background: #E9E9E9;
+}
+
+#addForm {
+    height: 251px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: repeat(2, 25px) 150px repeat(2, 25px) 1px;
+    grid-template-areas: 
+        "naamT naamE"
+        "afkortingT afkortingE"
+        "tekstT tekstE"
+        "previewT previewE"
+        "rubrixT rubrixE"
+        ". .";
+}
+
+#addForm *:not(#submitE) {
+    width: 100%;
+    height: 100%;
+}
+
+#addForm #submitE {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 20%;
+}
+
+#addForm div.aTag {
+    display: flex;
+    align-items: center;
+}
+
+#addForm #naamT {
+    grid-area: naamT;
+}
+#addForm #naamE {
+    grid-area: naamE;
+}
+#addForm #afkortingT {
+    grid-area: afkortingT;
+}
+#addForm #afkortingE {
+    grid-area: afkortingE;
+}
+#addForm #tekstT {
+    grid-area: tekstT;
+}
+#addForm #tekstE {
+    grid-area: tekstE;
+    resize: none;
+}
+#addForm #previewT {
+    grid-area: previewT;
+}
+#addForm #previewE {
+    grid-area: previewE;
+}
+#addForm #rubrixT {
+    grid-area: rubrixT;
+}
+#addForm #rubrixE {
+    grid-area: rubrixE;
+}
+
+#editForm {
+    height: 251px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: repeat(2, 25px) 150px repeat(2, 25px) 1px;
+    grid-template-areas: 
+        "naamT naamE"
+        "afkortingT afkortingE"
+        "tekstT tekstE"
+        "previewT previewE"
+        "rubrixT rubrixE"
+        ". .";
+}
+
+#editForm *:not(#submitEF) {
+    width: 100%;
+    height: 100%;
+}
+
+#editForm #submitEF {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 20%;
+}
+
+#editForm div.aTag {
+    display: flex;
+    align-items: center;
+}
+
+#editForm #naamTTS {
+    grid-area: naamT;
+}
+#editForm #naamEE {
+    grid-area: naamE;
+}
+#editForm #afkortingTT {
+    grid-area: afkortingT;
+}
+#editForm #afkortingEE {
+    grid-area: afkortingE;
+}
+#editForm #tekstTT {
+    grid-area: tekstT;
+}
+#editForm #tekstEE {
+    grid-area: tekstE;
+    resize: none;
+}
+#editForm #previewTT {
+    grid-area: previewT;
+}
+#editForm #previewEE {
+    grid-area: previewE;
+}
+#editForm #rubrixTT {
+    grid-area: rubrixT;
+}
+#editForm #rubrixEE {
+    grid-area: rubrixE;
+}
+
 .rankContent {
     background: #FFFFFF;
     border: 1px solid #E9E9E9;
@@ -475,6 +1525,10 @@ p.headerDashboardP {
     width: 7.5%;
     display: flex;
     justify-content: space-between;
+}
+
+.filterP span {
+    margin-right: 10px;
 }
 
 .filterOption {
@@ -500,7 +1554,24 @@ p.headerDashboardP {
     text-align: left;
 }
 
-.errorText {
+button.rankButton {
+    cursor: pointer;
+    text-decoration: underline;
+    border: 2px solid #DEDEDE;
+    border-radius: 5px;
+    background: #FFFFFF;
+    transition: background 0.5s;
+    outline: none;
+    padding: 2%;
+    margin-left: 5%;
+}
+
+button.rankButton:hover {
+    background: #E9E9E9;
+    text-decoration: line-through;
+}
+
+.rankErrorText {
     margin-left: 25px;
     font-size: 0.9em;
 }

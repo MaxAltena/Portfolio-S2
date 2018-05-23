@@ -1,8 +1,4 @@
 $(document).ready(function(){
-    var activeMain = "mainSprint1";
-    var activeSub = "subTab1";
-    var activeMainContent = "contentSprint1";
-    var activeSubContent = "contentSprint1_Tab1";
     var click = true;
     
     $(".mainMenu").on("click", function(){

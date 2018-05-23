@@ -1,8 +1,4 @@
 $(document).ready(function(){
-    $("#backTo").on("click", function(){
-        window.location = "../";
-    });
-    
     $("#submitLogin").on("click", function(){
         $("#error").fadeOut(300);
         
@@ -13,15 +9,16 @@ $(document).ready(function(){
             setTimeout(function(){
                 $.ajax({
                     type: "POST",
-                    url: "../admin/login",
+                    url: "/admin/",
                     data: {
                         username: $("#gebruikersnaamLogin").val(),
-                        password: $("#wachtwoordLogin").val()
+                        password: $("#wachtwoordLogin").val(),
+                        login: "true"
                     },
                     cache: false,
                     success: function(result){
                         if (result === "Login"){
-                            window.location = "/admin/userdata";
+                            window.location = "/admin/";
                         }
                         else {
                             $("#error").fadeIn(300);
@@ -63,15 +60,16 @@ $(document).ready(function(){
             setTimeout(function(){
                 $.ajax({
                     type: "POST",
-                    url: "../admin/register",
+                    url: "/admin/",
                     data: {
                         username: $("#gebruikersnaamRegister").val(),
-                        password: $("#wachtwoordRegister").val()
+                        password: $("#wachtwoordRegister").val(),
+                        register: "true"
                     },
                     cache: false,
                     success: function(result){
                         if (result === "Register"){
-                            window.location = "/admin/userdata";
+                            window.location = "/admin/";
                         }
                         else {
                             $("#error").fadeIn(300);

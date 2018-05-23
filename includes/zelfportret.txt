@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>Max Altena</title>
+        <meta name="author" short="mother" content="Brigitte Altena-Deurenberg">
+        <meta name="author" short="father" content="Marco Altena">
+        <meta name="family" short="brother" content="Bram Altena">
+        
+        <meta name="description" content="A young and smart man">
+        <meta name="hometown" short="Best" content="Best, North Brabant, The Netherlands">
+        <meta name="birthday" short="10/09/1998" content="10 September 1998">
+        <meta name="age" content="19">
+        <meta name="keywords" content="Young, Smart, Male, 19">
+        
+        <meta name="relationship" status="taken">
+        <meta name="taken-by" short="girlfriend" content="Joske Smeets">
+        
+        <meta name="study" short="ICT&MD" content="ICT & Media Design">
+        <meta name="studyyear" content="First year">
+        
+        <meta charset="UTF-8">
+        <meta name="language" short="nl" content="Dutch">
+        <meta name="second-language" short="en" content="English">
+        
+        <link rel="style" href="https://www.open32.nl/">
+        <link rel="style" href="https://www.silvercreek.nl/">
+        
+        <meta name="color" short="#FECD18" content="Turbo">
+        <meta name="animal" content="Elephant">
+        <meta name="food" content="Taco's and Burrito's">
+        <meta name="vacation-destination" content="Längenfeld, Austria">
+        <meta name="dream" content="Rich and famous">
+        
+        <meta name="hobby" content="Golf">
+        
+        <!-- Dromen die ik heb of waar ik naartoe wil? -->
+        
+        <!-- Dingen waar ik aan denk -->
+    </head>
+
+    <body>
+        <header>
+            <hair></hair>
+            <face>
+                <eye></eye>
+                <eye></eye>
+                <ear></ear>
+                <ear></ear>
+                <nose></nose>
+                <mouth></mouth>
+            </face>
+        </header>
+        <main>
+            <arm>
+                <upper></upper>
+                <lower></lower>
+                <hand></hand>
+            </arm>
+            <torso></torso>
+            <arm>
+                <upper></upper>
+                <lower></lower>
+                <hand></hand>
+            </arm>
+        </main>
+        <footer>
+            <leg>
+                <upper></upper>
+                <lower></lower>
+                <foot></foot>
+            </leg>
+            <leg>
+                <upper></upper>
+                <lower></lower>
+                <foot></foot>
+            </leg>
+        </footer>
+        
+        <talents></talents>
+        <skills>
+            <li>Programming</li>
+        </skills>
+        
+        <!-- Foto? -->
+        <!-- Talenten -->
+        <!-- Vaardigheden -->
+        <!-- Dingen die ik kan/goed in ben -->
+    </body>
+</html>

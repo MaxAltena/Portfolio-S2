@@ -1,13 +1,13 @@
 <?php
 session_start();
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
 if (isset($_GET['c'])) {
     if (!empty($_GET['c'])) {
         $shortArray = array();
-        $category = new Category;
-        $categories = $category->fetch();
+        $query = $PDO->prepare('SELECT short, name, preview FROM categories');
+        $query->execute();
+        $categories = $query->fetchAll();
         
         foreach ($categories as $category) { 
             array_push($shortArray, $category['short']); 
@@ -16,33 +16,43 @@ if (isset($_GET['c'])) {
             $short = $_GET['c'];
             $page = $short;
             
-            $getCategory = new Category;
-            $currentCategory = $getCategory->fetch_category($short);
+            $query = $PDO->prepare('SELECT name, text, rubrix FROM categories WHERE short = ?');
+            $query->bindValue(1, $short);
+            $query->execute();
+            $result = $query->fetchAll();
+            $currentCategory = $result[0];
             
-            $item = new Item;
-            $items = $item->fetch_for_preview_by_category($short);
+            $query = $PDO->prepare('SELECT id FROM categories WHERE short = ?');
+            $query->bindValue(1, $short);
+            $query->execute();
+            $categoryID = $query->fetch(PDO::FETCH_COLUMN, 0);
+
+            $query = $PDO->prepare('SELECT id, name, description, preview, sprint, spotlight FROM items WHERE category = ? ORDER BY sprint ASC');
+            $query->bindValue(1, $categoryID);
+            $query->execute();
+            $items = $query->fetchAll();
             
-            $queryCatID = $PDO->prepare('SELECT id FROM categories WHERE short = ?');
-            $queryCatID->bindValue(1, $short);
-            $queryCatID->execute();
-            $result = $queryCatID->fetch();
+            $query = $PDO->prepare('SELECT id FROM categories WHERE short = ?');
+            $query->bindValue(1, $short);
+            $query->execute();
+            $result = $query->fetch();
             $categoryID = $result[0];
             
-            $queryHasSpotlight = $PDO->prepare('SELECT * FROM items WHERE category = ? AND spotlight = 1');
-            $queryHasSpotlight->bindValue(1, $categoryID);
-            $queryHasSpotlight->execute();
-            $HasSpotlight = $queryHasSpotlight->rowCount() ? true : false;
+            $query = $PDO->prepare('SELECT * FROM items WHERE category = ? AND spotlight = 1');
+            $query->bindValue(1, $categoryID);
+            $query->execute();
+            $HasSpotlight = $query->rowCount() ? true : false;
 ?>
 <html lang="nl">
     <head>
         <title><?= $short; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/categoriestyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/css/categoriestyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/menu.php'); ?>
         <main>
             <div id="top">
                 <div id="topTitle">
@@ -63,15 +73,16 @@ if (isset($_GET['c'])) {
                 </div>
                 <?php if ($currentCategory['rubrix'] == 1) { ?>
                 <div id="topRubrix">
-                    <div id="rubrixLink">
-                        <span class="textSpan">Rubrix van <span class="accent"><?= $short; ?></span></span>
-                        <span class="arrowSpan arrowSpanRubrix">
-                            <svg viewBox="0 0 24 24" class="arrow">
-                                <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <script>$("#rubrixLink").on("click", function(){ window.location = "/rubrix?r=<?= $short; ?>"; });</script>
+                    <a href="/rubrix?r=<?= $short; ?>" class="aLink">
+                        <div id="rubrixLink">
+                            <span class="textSpan">Rubrix van <span class="accent"><?= $short; ?></span></span>
+                            <span class="arrowSpan arrowSpanRubrix">
+                                <svg viewBox="0 0 24 24" class="arrow">
+                                    <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </a>
                 </div>
                 <?php
                     }
@@ -80,7 +91,6 @@ if (isset($_GET['c'])) {
             <div id="center">
         <?php
             if ($HasSpotlight == "1"){
-                $query = $PDO->prepare('');
         ?>
                 <div id="spotlight">
                     <h1>Uitgelichte opdrachten</h1>
@@ -92,63 +102,74 @@ if (isset($_GET['c'])) {
         <?php
                 foreach ($items as $item){
                     if ($item['spotlight'] == 1){
+                        $highID = $item['id'] + 10000;
         ?>
-                    <div class="itemLink" id="itemLink<?= $item['id']; ?>">
-                                <div class="section">
-                                    <div class="firstClass">
-                                        <h1><?= $item['name']; ?></h1>
-                                        <h2><?= $item['description']; ?></h2>
-                                    </div>
-                                    <div>
-                                        <span class="arrowSpan">
-                                            <svg viewBox="0 0 24 24" class="arrow">
-                                                <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
-                                            </svg>
-                                        </span>
-                                    </div>
+                    <a href="/item?i=<?= $item['name']; ?>" class="aLink">
+                        <div class="itemLink" id="itemLink<?= $highID; ?>">
+                            <div class="section">
+                                <div class="firstClass">
+                                    <h1><?= $item['name']; ?></h1>
+                                    <h2><?= $item['description']; ?></h2>
+                                </div>
+                                <div>
+                                    <span class="arrowSpan">
+                                        <svg viewBox="0 0 24 24" class="arrow">
+                                            <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                        </svg>
+                                    </span>
                                 </div>
                             </div>
-                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
+                        </div>
+                    </a>
                 <?php
-                            $photo = new Photo;
-                            $photoInsert = $photo->fetch_by_id($item['preview']);
+                            $query = $PDO->prepare('SELECT name FROM media WHERE id = ?');
+                            $query->bindValue(1, $item['preview']);
+                            $query->execute();
+                            $result = $query->fetch();
+                            $photoInsert = $result['name'];
 
                             if ($photoInsert !== null) {
                 ?>
-                               <script>$("#itemLink<?= $item['id']; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
+                               <script>$("#itemLink<?= $highID; ?>").css({background: "url(/assets/media/<?= $photoInsert; ?>)", 'background-position': "center center"})</script>
                 <?php
                             }
                     }
                 }
         ?>
                 </div>
-                <div id="filter"></div>
         <?php
             }  
+        ?>
+                <div id="filter"></div>
+        <?php
                     $sprintCounter = 0;
                     $sprints = false;
                     foreach ($items as $item) {
                         if ($item['sprint'] == null) {
         ?>
-                            <div class="itemLink item" id="itemLink<?= $item['id']; ?>">
-                                <div class="section">
-                                    <div class="firstClass">
-                                        <h1><?= $item['name']; ?></h1>
-                                        <h2><?= $item['description']; ?></h2>
-                                    </div>
-                                    <div>
-                                        <span class="arrowSpan">
-                                            <svg viewBox="0 0 24 24" class="arrow">
-                                                <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
-                                            </svg>
-                                        </span>
+                            <a href="/item?i=<?= $item['name']; ?>" class="aLink">
+                                <div class="itemLink item" id="itemLink<?= $item['id']; ?>">
+                                    <div class="section">
+                                        <div class="firstClass">
+                                            <h1><?= $item['name']; ?></h1>
+                                            <h2><?= $item['description']; ?></h2>
+                                        </div>
+                                        <div>
+                                            <span class="arrowSpan">
+                                                <svg viewBox="0 0 24 24" class="arrow">
+                                                    <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                                </svg>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
+                            </a>
                 <?php
-                            $photo = new Photo;
-                            $photoInsert = $photo->fetch_by_id($item['preview']);
+                            $query = $PDO->prepare('SELECT name FROM media WHERE id = ?');
+                            $query->bindValue(1, $item['preview']);
+                            $query->execute();
+                            $result = $query->fetch();
+                            $photoInsert = $result['name'];
 
                             if ($photoInsert !== null) {
                 ?>
@@ -160,25 +181,29 @@ if (isset($_GET['c'])) {
                             $sprints = true;
                             if ($item['sprint'] == $sprintCounter) {
                 ?>
-                            <div class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
-                                <div class="section">
-                                    <div class="firstClass">
-                                        <h1><?= $item['name']; ?></h1>
-                                        <h2><?= $item['description']; ?></h2>
-                                    </div>
-                                    <div>
-                                        <span class="arrowSpan">
-                                            <svg viewBox="0 0 24 24" class="arrow">
-                                                <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
-                                            </svg>
-                                        </span>
+                            <a href="/item?i=<?= $item['name']; ?>" class="aLink">
+                                <div class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
+                                    <div class="section">
+                                        <div class="firstClass">
+                                            <h1><?= $item['name']; ?></h1>
+                                            <h2><?= $item['description']; ?></h2>
+                                        </div>
+                                        <div>
+                                            <span class="arrowSpan">
+                                                <svg viewBox="0 0 24 24" class="arrow">
+                                                    <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                                </svg>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
+                            </a>
                 <?php
-                                $photo = new Photo;
-                                $photoInsert = $photo->fetch_by_id($item['preview']);
+                                $query = $PDO->prepare('SELECT name FROM media WHERE id = ?');
+                                $query->bindValue(1, $item['preview']);
+                                $query->execute();
+                                $result = $query->fetch();
+                                $photoInsert = $result['name'];
 
                                 if ($photoInsert !== null) {
                 ?>
@@ -197,25 +222,29 @@ if (isset($_GET['c'])) {
                                     </svg>
                                 </div>
 
-                                <div class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
-                                    <div class="section">
-                                        <div class="firstClass">
-                                            <h1><?= $item['name']; ?></h1>
-                                            <h2><?= $item['description']; ?></h2>
-                                        </div>
-                                        <div>
-                                            <span class="arrowSpan">
-                                                <svg viewBox="0 0 24 24" class="arrow">
-                                                    <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
-                                                </svg>
-                                            </span>
+                                <a href="/item?i=<?= $item['name']; ?>" class="aLink">
+                                    <div class="itemLink item itemSprint<?= $item['sprint']; ?>" id="itemLink<?= $item['id']; ?>">
+                                        <div class="section">
+                                            <div class="firstClass">
+                                                <h1><?= $item['name']; ?></h1>
+                                                <h2><?= $item['description']; ?></h2>
+                                            </div>
+                                            <div>
+                                                <span class="arrowSpan">
+                                                    <svg viewBox="0 0 24 24" class="arrow">
+                                                        <path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/>
+                                                    </svg>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <script>$("#itemLink<?= $item['id']; ?>").on("click", function(){ window.location = "/item?i=<?= $item['name']; ?>";});</script>
+                                </a>
                 <?php
-                                $photo = new Photo;
-                                $photoInsert = $photo->fetch_by_id($item['preview']);
+                                $query = $PDO->prepare('SELECT name FROM media WHERE id = ?');
+                                $query->bindValue(1, $item['preview']);
+                                $query->execute();
+                                $result = $query->fetch();
+                                $photoInsert = $result['name'];
 
                                 if ($photoInsert !== null) {
                 ?>
@@ -292,10 +321,12 @@ if (isset($_GET['c'])) {
                 <span class="divider"></span>
             </div>
             <div id="bottom">
-                <span id="backtoHome" class="backtoHome">
-                    <span class="arrowSpan arrowSpanBTH"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span>
-                    <span class="footerLink">Terug naar homepagina</span>
-                </span>
+                <a href="../" class="bLink">
+                    <span id="backtoHome" class="backtoHome">
+                        <span class="arrowSpan arrowSpanBTH"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span>
+                        <span class="footerLink">Terug naar homepagina</span>
+                    </span>
+                </a>
                 <span id="backLine"></span>
                 <span id="backtoTop" class="backtoTop">
                     <span class="footerLink">Terug naar boven</span>
@@ -303,8 +334,8 @@ if (isset($_GET['c'])) {
                 </span>
             </div>
         </main>
-        <script src="js/category.js"></script>
-        <?php include_once('includes/menuselect.php'); ?>
+        <script src="/js/category.js"></script>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/menuselect.php'); ?>
     </body>
 </html>
 <?php

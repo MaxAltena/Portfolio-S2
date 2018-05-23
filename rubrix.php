@@ -1,13 +1,13 @@
 <?php
 session_start();
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
 if (isset($_GET['r'])) {
     if (!empty($_GET['r'])) {
         $rubrixArray = array();
-        $rubrix = new Rubrix;
-        $rubrixs = $rubrix->fetch();
+        $query = $PDO->prepare('SELECT DISTINCT name FROM rubrix');
+        $query->execute();
+        $rubrixs = $query->fetchAll();
         
         foreach ($rubrixs as $rubrix) { 
             array_push($rubrixArray, $rubrix['name']); 
@@ -15,22 +15,27 @@ if (isset($_GET['r'])) {
         if (in_array($_GET['r'], $rubrixArray)) {
             $short = $_GET['r'];
             
-            $getRubrix = new Rubrix;
-            $currentRubrix = $getRubrix->fetch_rubrix($short);
+            $query = $PDO->prepare('SELECT * FROM rubrix WHERE name = ?');
+            $query->bindValue(1, $short);
+            $query->execute();
+            $currentRubrix = $query->fetchAll();
             
-            $getCategory = new Category;
-            $currentCategory = $getCategory->fetch_for_rubrix($short);
+            $query = $PDO->prepare('SELECT name, short FROM categories WHERE short = ?');
+            $query->bindValue(1, $short);
+            $query->execute();
+            $result = $query->fetchAll();
+            $currentCategory = $result[0];
 ?>
 <html lang="nl">
     <head>
         <title>Rubrix <?= $currentCategory['short']; ?> | Max Altena</title>
-        <?php include_once('includes/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="css/rubrixstyle.css">
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/css/rubrixstyle.css">
     </head>
 
     <body>
-        <?php include_once('includes/loader.php'); ?>
-        <?php include_once('includes/menu.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/loader.php'); ?>
+        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/menu.php'); ?>
         <main>
             <div id="rubrixHeader">
                 <h1>Rubrix voor <?= $currentCategory['name']; ?> (<span class="accent"><?= $currentCategory['short']; ?></span>)</h1>
@@ -77,13 +82,14 @@ if (isset($_GET['r'])) {
                 </table>
             </div>
             <div id="rubrixTerug">
-                <div class="terug">
-                    <span class="arrowSpan arrowSpanRubrix"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <span class="accent"><?= $currentCategory['short']; ?></span></span>
-                    <script>$(".terug").on("click", function(){ window.location = "/categorie?c=<?= $currentCategory['short']; ?>";});</script>
-                </div>
+                <a href="/categorie?c=<?= $currentCategory['short']; ?>">
+                    <div class="terug">
+                        <span class="arrowSpan arrowSpanRubrix"><svg viewBox="0 0 24 24" class="arrow"><path class="arrowPath" d="M24 11.871l-5-4.871v3h-19v4h19v3z"/></svg></span><span class="textSpan">Terug naar <span class="accent"><?= $currentCategory['short']; ?></span></span>
+                    </div>
+                </a>
             </div>
         </main>
-        <script src="js/rubrix.js"></script>
+        <script src="/js/rubrix.js"></script>
     </body>
 </html>
 <?php

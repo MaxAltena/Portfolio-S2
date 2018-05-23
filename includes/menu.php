@@ -1,33 +1,41 @@
 <?php
-include_once('includes/connection.php');
-include_once('includes/query.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/connection.php');
 
-$category = new Category;
-$categories = $category->fetch();
+$query = $PDO->prepare('SELECT short, name, preview FROM categories');
+$query->execute();
+$categories = $query->fetchAll();
 
 ?>
 <div id="menu">
     <div id="left_banner">
         <div class="menu_box" id="menu_box_logo">
-            <div class="menu_logo_link">
-                <?php include('assets/logo.svg'); ?>
-            </div>
+            <a href="../">
+                <div class="menu_logo_link">
+                    <?php include($_SERVER['DOCUMENT_ROOT'] . '/assets/logo.svg'); ?>
+                </div>
+            </a>
         </div>
         <div class="menu_box">
             <div id="BURGER">
-                <?php include('assets/burger.svg'); ?>
+                <?php include($_SERVER['DOCUMENT_ROOT'] . '/assets/burger.svg'); ?>
             </div>
         </div>
         <div class="menu_box" id="menu_box_social">
-            <div class="social_icon" id="LINKEDIN">
-                <?php include('assets/linkedin.svg'); ?>
-            </div>
-            <div class="social_icon" id="FLICKR">
-                <?php include('assets/flickr.svg'); ?>
-            </div>
-            <div class="social_icon" id="GITHUB">
-                <?php include('assets/github.svg'); ?>
-            </div>
+            <a href="https://www.linkedin.com/in/MaxAltena/" target="_blank" class="social_icon_a">
+                <div class="social_icon" id="LINKEDIN">
+                    <?php include($_SERVER['DOCUMENT_ROOT'] . '/assets/linkedin.svg'); ?>
+                </div>
+            </a>
+            <a href="https://www.flickr.com/people/154548504@N07/" target="_blank" class="social_icon_a">
+                <div class="social_icon" id="FLICKR">
+                    <?php include($_SERVER['DOCUMENT_ROOT'] . '/assets/flickr.svg'); ?>
+                </div>
+            </a>
+            <a href="https://github.com/MaxAltena/" target="_blank" class="social_icon_a">
+                <div class="social_icon" id="GITHUB">
+                    <?php include($_SERVER['DOCUMENT_ROOT'] . '/assets/github.svg'); ?>
+                </div>
+            </a>
         </div>
     </div>
     <div id="menu_banner">
@@ -35,7 +43,7 @@ $categories = $category->fetch();
             <div id="searchContainer">
                 <form id="searchForm" autocomplete="off">
                     <input type="text" placeholder="Zoeken..." name="searchBar" id="searchBar" />
-                    <div id="searchButton"><?php include('assets/search.svg'); ?></div>
+                    <div id="searchButton"><?php include($_SERVER['DOCUMENT_ROOT'] . '/assets/search.svg'); ?></div>
                     <input type="submit" id="searchSubmit" value="" />
                 </form>
                 <div id="searchResults"></div>
@@ -48,31 +56,33 @@ $categories = $category->fetch();
         </div>
         
         <div id="menu_banner_middle">
-            <div class="menuLink" id="homeLink">
-                <div>
-                    <h1>Home</h1>
-                    <h2>Van alles wat</h2>
+            <a href="../">
+                <div class="menuLink" id="homeLink">
+                    <div>
+                        <h1>Home</h1>
+                        <h2>Van alles wat</h2>
+                    </div>
                 </div>
-            </div>
-            <script></script>
+            </a>
             <?php
             foreach($categories as $category) {
             ?>
-            <div class="menuLink" id="<?= $category['short']; ?>Link">
-                <div>
-                    <h1><?= $category['short']; ?></h1>
-                    <h2><?= $category['name']; ?></h2>
+            <a href="/categorie?c=<?= $category['short']; ?>">
+                <div class="menuLink" id="<?= $category['short']; ?>Link">
+                    <div>
+                        <h1><?= $category['short']; ?></h1>
+                        <h2><?= $category['name']; ?></h2>
+                    </div>
                 </div>
-            </div>
-            <script>$("#<?= $category['short']; ?>Link").on("click", function(){ $("#menu_banner").css({position: "absolute"}); $("body").css({position: "absolute", right: 0}); var width = $("body").width(); $("body").animate({right: width}, 500, "easeInOutCubic", function(){ setTimeout(function(){ window.location = "/categorie?c=<?= $category['short']; ?>"; }, 500);});});</script>
+            </a>
             <?php
             }
             ?>
         </div>
         <div id="menu_banner_bottom">
-            <p id="documentatieLink">documentatie</p>
-            <p id="adminLink">inloggen</p>
+            <a href="/documentatie/" id="documentatieLink">documentatie</a>
+            <a href="/login" id="adminLink">inloggen</a>
         </div>
     </div>
 </div>
-<script src="../js/menu.js"></script>
+<script src="/js/menu.js"></script>
