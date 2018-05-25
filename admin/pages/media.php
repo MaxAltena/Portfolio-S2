@@ -115,7 +115,7 @@ if (isset($_SESSION['ingelogd'])) {
         </div>
         
         <div class="mediaAddWrapper" style="display: none;">
-            <form id="addForm" method="post" enctype="multipart/form-data">
+            <form id="MediaaddForm" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" id="file" required/>
                 <input type="submit" value="Media toevoegen" name="upload" id="upload" />
             </form>

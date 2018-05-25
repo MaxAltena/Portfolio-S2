@@ -1022,7 +1022,7 @@ button.listButton:hover {
     align-items: center;
 }
 
-#addForm {
+#MediaaddForm {
     display: flex;
     justify-content: space-around;
     align-items: center;
