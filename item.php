@@ -294,10 +294,10 @@ if (isset($_GET['i'])) {
                        <script>
                             $("#document").on({
                                 mouseenter: function(){
-                                    $("#fileText").css({"text-decoration": "line-through"});
+                                    $("#fileText").css({"text-decoration": "underline"});
                                 },
                                 mouseleave: function(){
-                                    $("#fileText").css({"text-decoration": "underline"});
+                                    $("#fileText").css({"text-decoration": "none"});
                                 }
                             });
                         </script>
@@ -328,10 +328,10 @@ if (isset($_GET['i'])) {
                        <script>
                             $("#video").on({
                                 mouseenter: function(){
-                                    $("#videoText").css({"text-decoration": "line-through"});
+                                    $("#videoText").css({"text-decoration": "underline"});
                                 },
                                 mouseleave: function(){
-                                    $("#videoText").css({"text-decoration": "underline"});
+                                    $("#videoText").css({"text-decoration": "none"});
                                 }
                             });
                         </script>

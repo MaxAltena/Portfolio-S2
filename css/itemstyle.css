@@ -34,12 +34,12 @@
 }
 
 .link {
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: 800;
 }
 
 .link:hover {
-    text-decoration: line-through;
+    text-decoration: underline;
 }
 
 .accent {
@@ -224,7 +224,7 @@ span.arrowSpan.hovered:after {
     width: auto;
     height: auto;
     padding-top: 2.5%;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 #videoIcon {
@@ -236,7 +236,7 @@ span.arrowSpan.hovered:after {
     width: auto;
     height: auto;
     padding-top: 2.5%;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 #related {

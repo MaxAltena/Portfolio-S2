@@ -310,10 +310,10 @@ if (isset($_SESSION['ingelogd'])) {
                 }
             },
             mouseenter: function(){
-                $(this).css({"text-decoration": "line-through"});
+                $(this).css({"text-decoration": "underline"});
             },
             mouseleave: function(){
-                $(this).css({"text-decoration": "underline"});
+                $(this).css({"text-decoration": "none"});
             }
         });
         

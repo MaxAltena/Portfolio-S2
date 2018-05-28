@@ -40,7 +40,10 @@ if (isset($_GET['r'])) {
             <div id="rubrixHeader">
                 <h1>Rubrix voor <?= $currentCategory['name']; ?> (<span class="accent"><?= $currentCategory['short']; ?></span>)</h1>
             </div>
-            <div id="rubrixContent">
+            <div id="rubrixContent" style="display: flex; flex-direction: column;">
+                <div style="margin-bottom: 25px;">
+                    <p style="text-align: center;">Hover over een leerdoel die geselecteerd is om toelichting te krijgen</p>
+                </div>
                 <table>
                     <tr>
                         <th>Criterium</th>

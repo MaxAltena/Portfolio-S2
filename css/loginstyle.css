@@ -15,13 +15,13 @@ main {
     left: 3vh;
     padding: 1vh;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
     font-size: 1.75vh;
     font-weight: 400;
 }
 
 #backTo:hover {
-    text-decoration: line-through;
+    text-decoration: underline;
 }
 
 #error {
@@ -186,12 +186,12 @@ input[type=submit] {
     cursor: pointer;
     font-size: 2vh;
     color: #DEDEDE;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 input[type=submit]:hover,
 input[type=submit]:active {
-    text-decoration: line-through;
+    text-decoration: underline;
 }
 
 .ui-effects-transfer {
