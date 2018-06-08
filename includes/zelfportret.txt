@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>Max Altena</title>
         <meta name="author" short="mother" content="Brigitte Altena-Deurenberg">

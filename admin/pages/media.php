@@ -189,7 +189,7 @@ if (isset($_SESSION['ingelogd'])) {
             }
         });
 
-        $("form#addForm").submit(function(e){
+        $("form#MediaaddForm").submit(function(e){
             e.preventDefault();
             var formData = new FormData(this);
             formData.append("add", "add"); 
@@ -203,15 +203,15 @@ if (isset($_SESSION['ingelogd'])) {
                 processData: false,
                 success: function(result){
                     if(result == "Het bestand is geupload."){
-                            alert(result);
-                            $("#content").hide("slide", { direction: "left" }, 500);
-                            setTimeout(function(){
-                                $("#content").load("/admin/pages/media").show("slide", { direction: "left" }, 500);
-                            }, 500);
-                        }
-                        else {
-                            alert(result);
-                        }
+                        alert(result);
+                        $("#content").hide("slide", { direction: "left" }, 500);
+                        setTimeout(function(){
+                            $("#content").load("/admin/pages/media").show("slide", { direction: "left" }, 500);
+                        }, 500);
+                    }
+                    else {
+                        alert(result);
+                    }
                 }
             });
         });

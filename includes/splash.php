@@ -102,6 +102,7 @@
         line-height: 25px;
         font-size: 20px;
         overflow-y: hidden;
+        transform: translate(0);
     }
     
     #code_canvas::-webkit-scrollbar {
@@ -110,17 +111,9 @@
         right: 0;
         width: 10px;
     }
-    
-    #code_canvas::-webkit-scrollbar-track {
-        background: #202020; 
-    }
-    
+
     #code_canvas::-webkit-scrollbar-thumb {
         background: #FECD18; 
-    }
-    
-    #code_canvas::-webkit-scrollbar-corner {
-        background: #202020;
     }
     
     .tag {
@@ -357,8 +350,9 @@
         }
         
         function reset(){
-            fetch("/includes/zelfportret.txt").then(response=>response.text()).then(text=>$("#code_canvas").val(text));
-            
+            $.get("/includes/zelfportret.txt", function(data) {
+                $("#code_canvas").val(data);
+            }, "text");
             setTimeout(lineCount, 250);
         }
         

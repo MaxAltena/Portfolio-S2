@@ -42,6 +42,8 @@ main {
     width: 100%;
     height: auto;
     text-align: justify;
+    line-height: 25px;
+    padding-bottom: 7px;
 }
 
 #topRubrix {
@@ -71,16 +73,16 @@ main {
     height: auto;
     background: #FFFFFF url('../assets/background.png') repeat center;
     display: grid;
-    grid-template-columns: 10% 25% 30% 25% 10%;
+    grid-template-columns: 10% 10% 15% 30% 15% 10% 10%;
     grid-template-rows: 5% 15% 5% auto 5% 5% 5%;
     grid-template-areas: 
-        ". . . . ."
-        ". title title title ."
-        ". . . . ."
-        ". content content content ."
-        ". . . . ."
-        ". . rubrix . ."
-        ". . . . .";
+        ". . . . . . ."
+        ". title title title title title ."
+        ". . . . . . ."
+        ". . content content content . ."
+        ". . . . . . ."
+        ". . . rubrix . . ."
+        ". . . . . . .";
 }
 
 #center {
@@ -304,6 +306,7 @@ span.arrowSpan.hovered:after {
 
 #contentFilter h2 {
     padding-bottom: 1vh;
+    text-align: center;
 }
 
 #contentFilter div:last-child {
@@ -313,6 +316,7 @@ span.arrowSpan.hovered:after {
 
 #contentFilter div span {
     cursor: pointer;
+    margin: 0 5px;
 }
 
 #contentFilter div span:hover {
